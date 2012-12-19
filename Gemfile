@@ -7,6 +7,14 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
+group :test do
+  gem 'rspec'
+  gem 'pry'
+end
+
+group :development do
+  gem 'pry'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

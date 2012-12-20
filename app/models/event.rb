@@ -6,7 +6,6 @@ class Event < ActiveRecord::Base
   private
   #TODO put uuidtools mixin in lib/
   def generate_uuid
-    require 'pry'; binding.pry
     self.uuid = UUIDTools::UUID.timestamp_create().to_s
   end
 end

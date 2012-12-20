@@ -7,6 +7,8 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
+gem 'haml-rails'
+
 group :test do
   gem 'rspec'
   gem 'pry'

@@ -7,6 +7,8 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
+gem 'haml-rails'
+
 group :test do
   gem 'rspec'
   gem 'pry'
@@ -31,7 +33,7 @@ end
 
 gem 'devise'
 
-# gem 'jquery-rails'
+gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

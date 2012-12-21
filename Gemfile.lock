@@ -41,6 +41,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    daemon_controller (1.1.0)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -50,6 +51,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fastthread (1.0.7)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -72,6 +74,11 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     orm_adapter (0.4.0)
+    passenger (3.0.18)
+      daemon_controller (>= 1.0.0)
+      fastthread (>= 1.0.1)
+      rack
+      rake (>= 0.8.1)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -145,6 +152,7 @@ DEPENDENCIES
   devise
   haml-rails
   jquery-rails
+  passenger
   pry
   rails (= 3.2.8)
   rspec

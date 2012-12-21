@@ -9,6 +9,9 @@
   .field
     = f.label :uuid
     = f.text_field :uuid
+  .owner
+    Owner:
+    = current_user.email
   .field
     = f.label :name
     = f.text_field :name

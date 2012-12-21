@@ -9,6 +9,9 @@
 %p
   %b Description:
   = @event.description
+%p
+  %b Organizer:
+  = @event.owner.username
 
 = link_to 'Edit', edit_event_path(@event)
 \|

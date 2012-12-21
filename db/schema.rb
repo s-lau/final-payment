@@ -11,15 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220175651) do
+ActiveRecord::Schema.define(:version => 20121221143939) do
 
-  create_table "events", :id => false, :force => true do |t|
-    t.string   "uuid",        :limit => 36
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
+# Could not dump table "events" because of following StandardError
+#   Unknown type 'user' for column 'owner'
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

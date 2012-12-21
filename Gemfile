@@ -16,6 +16,7 @@ end
 
 group :development do
   gem 'pry'
+  gem 'passenger'
 end
 
 # Gems used only for assets and not required

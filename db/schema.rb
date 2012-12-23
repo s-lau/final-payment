@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220175651) do
+ActiveRecord::Schema.define(:version => 20121223213412) do
 
   create_table "events", :id => false, :force => true do |t|
     t.string   "uuid",        :limit => 36
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20121220175651) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
+
+  add_index "events", ["uuid"], :name => "index_events_on_uuid"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

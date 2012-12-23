@@ -2,18 +2,18 @@
 
 %table
   %tr
-    %th Uuid
     %th Name
     %th Description
+    %th Organizer
     %th
     %th
     %th
 
   - @events.each do |event|
     %tr
-      %td= event.uuid
       %td= event.name
       %td= event.description
+      %td= event.owner.email
       %td= link_to 'Show', event
       %td= link_to 'Edit', edit_event_path(event)
       %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }

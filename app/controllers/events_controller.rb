@@ -42,7 +42,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
-    require 'pry'; binding.pry
     @event.owner= current_user
 
     respond_to do |format|

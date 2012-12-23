@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :description, :username
   # attr_accessible :title, :body
 
-  has_many :events
+  has_many :events, foreign_key: "owner"
 end

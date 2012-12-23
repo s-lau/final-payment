@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   def index
     @events = {
       total_number_of_events_in_database: Event.count,
-      own_events: Event.where(user_id: current_user)
+      own_events: Event.where(owner: current_user)
     }
 
     respond_to do |format|

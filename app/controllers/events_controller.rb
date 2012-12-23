@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = {
+      total_number_of_events_in_database: Event.count,
       own_events: Event.where(user_id: current_user)
     }
 

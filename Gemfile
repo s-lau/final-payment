@@ -13,11 +13,13 @@ gem 'haml-rails'
 group :test do
   gem 'rspec'
   gem 'pry'
+  gem 'factory_girl_rails'
 end
 
 group :development do
   gem 'pry'
   gem 'passenger'
+  gem 'factory_girl_rails'
 end
 
 # Gems used only for assets and not required

@@ -10,6 +10,17 @@
   %b Organizer:
   = @event.owner.email
 
+%h2 Comments
+.comments
+  - @event.comments.each do |comment|
+    %div{:id => "event_#{@event.id}"}
+      .author
+        = comment.author.email
+      %p.comment_text
+        = comment.text
+    %br
+
+
 = link_to 'Edit', edit_event_path(@event)
 \|
 = link_to 'Back', events_path

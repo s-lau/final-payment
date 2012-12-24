@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223214716) do
+ActiveRecord::Schema.define(:version => 20121224100832) do
+
+  create_table "event_comments", :force => true do |t|
+    t.text     "text"
+    t.string   "event_uuid", :limit => 36
+    t.integer  "user_id"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
 
   create_table "events", :id => false, :force => true do |t|
     t.string   "uuid",        :limit => 36

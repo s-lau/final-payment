@@ -1,4 +1,6 @@
 Chargeback::Application.routes.draw do
+  resources :event_comments
+
   resources :events
 
   devise_for :users

@@ -1,19 +1,9 @@
-= form_for @event do |f|
-  - if @event.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
-
-  .owner
-    Owner:
-    = current_user.email
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit 'Save'
+= bootstrap_form_for @event do |f|
+  = f.error_messages
+  - if @event.owner.present?
+    = f.control_group Event.human_attribute_name(:owner) do
+      = @event.owner.email
+  = f.text_field :name
+  = f.text_area :description, rows: 5
+  = f.actions do
+    = f.primary t 'save'

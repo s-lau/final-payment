@@ -1,0 +1,27 @@
+de:
+  gflash:
+    #
+    # These are the translations for the different titles.
+    #
+    titles:
+      notice: "Hinweis"
+      success: "Erfolg"
+      warning: "Warnung"
+      error: "Fehler"
+      progress: "Fortschritt"
+    #
+    # Add gflash messages for controller actions:
+    # products:
+    #   create:
+    #     notice: "This is a notification"
+    #     error: "Something went wrong"
+    #
+    # Inside controller: 
+    # gflash :notice, :error
+    #
+    events:
+      create:
+        notice: Ereignis angelegt.
+      update:
+        notice: Ereignis geändert.
+        error: Ereignis konnte nicht geändert werden.

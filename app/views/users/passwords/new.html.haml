@@ -1,0 +1,8 @@
+.page-header
+  %h2= t 'users.forgot_password'
+= bootstrap_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+  = devise_error_messages!
+  = f.email_field :email
+  = f.actions do
+    = f.primary t('.submit')
+    = render "users/shared/links"

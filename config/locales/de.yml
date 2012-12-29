@@ -1,0 +1,73 @@
+de:
+  app:
+    title: Final Payment
+  
+  save: Speichern
+  update: Aktualisieren
+  sure: Wirklich? Sicher???
+  create: Erstellen
+  show: Anzeigen
+  edit: Bearbeiten
+  destroy: Löschen
+  back: Zurück
+  
+  attributes:
+    email: E-Mail
+    name: Name
+    description: Beschreibung
+    
+  
+  activerecord:
+    attributes:
+      event:
+        owner: Organisator
+      user:
+        remember_me: Eingeloggt bleiben
+        password: Passwort
+        password_confirmation: Passwort bestätigen
+        current_password: Aktuelles Passwort
+    models:
+      event:
+        one: Ereignis
+        other: Ereignisse
+      user: Benutzer
+  
+  events:
+    index:
+      headings:
+        overview: Ereignisübersicht
+        organized: Deine Ereignisse
+        contributed: Ergnisse an denen du teilgenommen hast
+      total_events: "Insgesamt %{count} Ereignisse in der Datenbank."
+      new_event: Ereignis erstellen
+    edit:
+      heading: Ereignis bearbeiten 
+  
+  users:
+    sign_up: Registrieren
+    sign_in: Anmelden
+    sign_out: Abmelden
+    forgot_password: Passwort vergessen?
+    no_confirmation: Keine Bestätigung erhalten?
+    no_unlock: Keine Entsperranleitung erhalten?
+    sign_in_provider: "Anmelden mit %{provider}"
+    
+    navbar:
+      settings: Einstellungen
+      account: Benutzerkonto
+      events_index: Alle Ereignisse
+    
+    passwords:
+      new:
+        submit: Passwortreset einleiten
+      edit:
+        heading: Passwort ändern
+        new_password: Neues Passwort
+        submit: Passwort ändern
+    
+    registrations:
+      edit:
+        cancel: "Konto löschen!!!"
+        help:
+          password: "(leer lassen wenn das Passwort nicht geändert werden soll)"
+          current_password: "(Änderungen müssen mit dem aktuellen Passwort bestätigt werden)"

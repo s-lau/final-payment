@@ -1,7 +1,8 @@
-%h1 Editing event
+.page-header
+  %h2= t '.heading'
 
 = render 'form'
 
-= link_to 'Show', @event
-\|
-= link_to 'Back', events_path
+.btn-group
+  = link_to t('show'), @event, class: 'btn'
+  = link_to t('back'), events_path, class: 'btn'

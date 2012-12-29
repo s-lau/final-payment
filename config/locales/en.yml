@@ -2,4 +2,50 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  save: Save
+  update: Update
+  sure: Are you sure?
+  create: Create
+  show: Show
+  edit: Edit
+  destroy: Destroy
+  
+  activerecord:
+    attributes:
+      event:
+        owner: Organizer
+  
+  events:
+    index:
+      headings:
+        overview: Events overview
+        organized: Events you organized
+        contributed: Events you contributed to
+      total_events: "Total number of events in database: %{count}"
+      new_event: New Event
+    edit:
+      heading: Editing event
+      
+  
+  users:
+    sign_up: Sign up
+    sign_in: Sign in
+    forgot_password: Forgot password?
+    no_confirmation: No confirmation received?
+    no_unlock: No unlock instructions received?
+    sign_in_provider: "Sign in with %{provider}"
+  
+    passwords:
+      new:
+        submit: Send me reset password instructions
+      edit:
+        heading: Change your password
+        new_password: "New password"
+        submit: "Change my password"
+  
+    registrations:
+      edit:
+        cancel: "Cancel Account!!!"
+        help:
+          password: "(leave blank if you don't want to change it)"
+          password_confirmation: "(we need your current password to confirm your changes)"

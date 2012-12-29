@@ -1,0 +1,20 @@
+!!! 5
+%html{:lang => I18n.locale}
+  %head
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}/
+    %title= t 'app.title'
+    = stylesheet_link_tag    'application', :media => 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body.container-fluid
+    = gflash
+    %header.row-fluid
+      %nav.span12.navbar.navbar-fixed-top
+        = render 'layouts/application/navbar'
+    #main.row-fluid
+      %aside.span2
+      %section.span10
+        = yield
+    %footer.row-fluid
+      .span2
+      .span10 All open source, do what you want!

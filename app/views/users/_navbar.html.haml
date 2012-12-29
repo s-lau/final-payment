@@ -1,0 +1,15 @@
+- if user_signed_in?
+  %li.dropdown
+    %a.dropdown-toggle{:'data-toggle' => 'dropdown', :href => events_path}= Event.model_name.human :count => 2
+    %ul.dropdown-menu
+      %li{:class => disabled_if(!Event.exists?)}
+        %a{:href => events_path}= t '.events_index'
+      %li
+        %a{:href => new_event_path}= t 'events.index.new_event'
+  %li.dropdown
+    %a.dropdown-toggle{:'data-toggle' => 'dropdown', :href => '#'}= t '.settings'
+    %ul.dropdown-menu
+      %li
+        %a{:href => edit_user_registration_path}= t '.account'
+- else
+  %li= link_to(t('users.sign_up'), new_user_registration_path)

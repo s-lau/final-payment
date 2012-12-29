@@ -32,6 +32,7 @@ GEM
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.2.1.1)
       sass (~> 3.2)
+    bootstrap_form (0.2.3)
     builder (3.0.4)
     coderay (1.0.8)
     coffee-rails (3.2.2)
@@ -48,6 +49,7 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     diff-lcs (1.1.3)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -57,6 +59,7 @@ GEM
       factory_girl (~> 4.1.0)
       railties (>= 3.0.0)
     fastthread (1.0.7)
+    gritter (1.0.2)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -104,6 +107,8 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
+    rails-i18n (0.7.2)
+      i18n (~> 0.5)
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -153,14 +158,18 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 2.2.1.1)
+  bootstrap_form
   coffee-rails (~> 3.2.1)
   devise
+  dynamic_form
   factory_girl_rails
+  gritter
   haml-rails
   jquery-rails
   passenger
   pry
   rails (= 3.2.8)
+  rails-i18n
   rspec
   sass-rails (~> 3.2.3)
   sqlite3

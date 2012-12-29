@@ -6,9 +6,16 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+
+gem 'devise'
+gem 'rails-i18n'
 gem 'uuidtools'
 
 gem 'haml-rails'
+gem 'jquery-rails'
+gem 'bootstrap_form'
+gem 'gritter'
+gem 'dynamic_form'
 
 group :test do
   gem 'rspec'
@@ -34,10 +41,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'devise'
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

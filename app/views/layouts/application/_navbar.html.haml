@@ -1,0 +1,6 @@
+.navbar-inner
+  %a.brand{:href => root_path}= t 'app.title'
+  
+  %ul.nav.pull-right
+    = render 'users/navbar'
+    = render 'users/session_link'

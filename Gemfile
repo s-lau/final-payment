@@ -19,6 +19,7 @@ gem 'dynamic_form'
 
 group :test do
   gem 'rspec'
+  gem 'database_cleaner'
   gem 'pry'
   gem 'factory_girl_rails'
 end
@@ -27,6 +28,10 @@ group :development do
   gem 'pry'
   gem 'passenger'
   gem 'factory_girl_rails'
+end
+
+group :test, :development do
+  gem 'rspec-rails'
 end
 
 # Gems used only for assets and not required

@@ -43,6 +43,7 @@ GEM
       execjs
     coffee-script-source (1.4.0)
     daemon_controller (1.1.0)
+    database_cleaner (0.9.1)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -127,6 +128,13 @@ GEM
     rspec-expectations (2.12.1)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.12.0)
+    rspec-rails (2.12.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 2.12.0)
+      rspec-expectations (~> 2.12.0)
+      rspec-mocks (~> 2.12.0)
     sass (3.2.3)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -160,6 +168,7 @@ DEPENDENCIES
   bootstrap-sass (~> 2.2.1.1)
   bootstrap_form
   coffee-rails (~> 3.2.1)
+  database_cleaner
   devise
   dynamic_form
   factory_girl_rails
@@ -171,6 +180,7 @@ DEPENDENCIES
   rails (= 3.2.8)
   rails-i18n
   rspec
+  rspec-rails
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer

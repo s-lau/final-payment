@@ -1,10 +1,14 @@
 Chargeback::Application.routes.draw do
-  resources :event_comments
 
-  resources :events
+  resources :events do
+    member do
+      put 'comment'
+    end
+  end
 
   devise_for :users
   get "home/index"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

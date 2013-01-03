@@ -13,7 +13,7 @@
 %h2 Comments
 .comments
   - @event.comments.each_with_index do |comment, index|
-    %div{:id => "event_#{comment.id}"}
+    %div{:id => "event_#{comment.id}", class: cycle('odd', 'even')}
       .comment_headline
         .index #{index+1}.
         .author #{comment.author.email}

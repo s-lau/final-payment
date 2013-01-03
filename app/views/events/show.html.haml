@@ -20,7 +20,13 @@
         = comment.text
     %br
 
+  %div
+
+%h3 New Comment
+= form_tag  comment_event_path(@event) , {method: :put} do
+  = text_field_tag :comment_text
+  = submit_tag "Comment!"
+
 
 = link_to 'Edit', edit_event_path(@event)
-\|
 = link_to 'Back', events_path

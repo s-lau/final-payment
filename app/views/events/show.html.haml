@@ -12,10 +12,11 @@
 
 %h2 Comments
 .comments
-  - @event.comments.each do |comment|
-    %div{:id => "event_#{@event.id}"}
-      .author
-        = comment.author.email
+  - @event.comments.each_with_index do |comment, index|
+    %div{:id => "event_#{comment.id}"}
+      .comment_headline
+        .index #{index+1}.
+        .author #{comment.author.email}
       %p.comment_text
         = comment.text
     %br

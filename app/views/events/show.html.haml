@@ -8,6 +8,37 @@
 %p= @event.owner.email
 
 
+%p#notice= notice
+
+%p
+  %b Name:
+  = @event.name
+%p
+  %b Description:
+  = @event.description
+%p
+  %b Organizer:
+  = @event.owner.email
+
+%h2 Comments
+.comments
+  - @event.comments.each_with_index do |comment, index|
+    %div{:id => "event_#{comment.id}", class: cycle('odd', 'even')}
+      .comment_headline
+        .index #{index+1}.
+        .author #{comment.author.email}
+      %p.comment_text
+        = comment.text
+    %br
+
+  %div
+
+%h3 New Comment
+= form_tag  comment_event_path(@event) , {method: :put} do
+  = text_field_tag :comment_text
+  = submit_tag "Comment!"
+
+
 .btn-group
   = link_to t('edit'), edit_event_path(@event), class: 'btn'
   = link_to t('back'), events_path, class: 'btn'

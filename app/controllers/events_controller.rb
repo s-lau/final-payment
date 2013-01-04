@@ -1,5 +1,22 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
+
+  def comment
+    event = Event.find params[:id]
+    text = params[:comment_text]
+
+    comment = EventComment.create text: text,
+      author: current_user,
+      event: event
+
+    #TODO make this beautiful
+    if comment.persisted?
+      redirect_to event, notice: "Comment saved"
+    else
+      redirect_to event, notice: "Comment not saved"
+    end
+  end
+
   # GET /events
   # GET /events.json
   def index

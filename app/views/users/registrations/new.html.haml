@@ -5,6 +5,8 @@
   = f.email_field :email
   = f.password_field :password
   = f.password_field :password_confirmation
+  = f.text_field :username
+  = f.text_area :description, rows: 5
   = f.actions do
     = f.primary t('users.sign_up')
     = render "users/shared/links"

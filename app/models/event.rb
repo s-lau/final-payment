@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   before_create :generate_uuid
   self.primary_key = "uuid"
   belongs_to :owner, foreign_key: "owner", class_name: "User"
+  has_many :comments, foreign_key: "event_uuid", class_name: "EventComment"
 
   private
   #TODO put uuidtools mixin in lib/

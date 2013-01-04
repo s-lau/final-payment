@@ -1,0 +1,18 @@
+.page-header
+  %h2= EventCharge.model_name.human count: @event_charges.count
+
+- if can? :create, EventCharge, @event => EventCharge
+  = link_to t('.new_event_charge'), '#', class: 'btn btn-primary', data: { toggles: '#new_event_charge' }
+
+  = bootstrap_form_for EventCharge.new, url: event_charges_path(@event), html: { class: 'hide' } do |f|
+    = render 'event_charges/form', f: f
+
+
+%table.table
+  %tr
+    %th= EventCharge.human_attribute_name :name
+    %th= EventCharge.human_attribute_name :price
+    %th
+    %th
+
+  = render @event_charges

@@ -13,4 +13,5 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :email
 
   has_many :events, foreign_key: "owner"
+  has_many :charges, class_name: 'EventCharge', foreign_key: :event_uuid
 end

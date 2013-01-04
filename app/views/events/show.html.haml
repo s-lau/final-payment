@@ -1,44 +1,53 @@
 .page-header
-  %h2= @event.name
-
-%h3= Event.human_attribute_name :description
-%p= @event.description
-
-%h3= Event.human_attribute_name :owner
-%p= @event.owner.email
-
-
-%p#notice= notice
-
-%p
-  %b Name:
-  = @event.name
-%p
-  %b Description:
-  = @event.description
-%p
-  %b Organizer:
-  = @event.owner.email
-
-%h2 Comments
-.comments
-  - @event.comments.each_with_index do |comment, index|
-    %div{:id => "event_#{comment.id}", class: cycle('odd', 'even')}
-      .comment_headline
-        .index #{index+1}.
-        .author #{comment.author.email}
-      %p.comment_text
-        = comment.text
-    %br
-
-  %div
-
-%h3 New Comment
-= form_tag  comment_event_path(@event) , {method: :put} do
-  = text_field_tag :comment_text
-  = submit_tag "Comment!"
-
-
-.btn-group
-  = link_to t('edit'), edit_event_path(@event), class: 'btn'
-  = link_to t('back'), events_path, class: 'btn'
+  %h1= @event.name
+    
+.tabbable.tabs-left
+  %ul.nav.nav-tabs
+    %li.active
+      %a{:href => '#overview', :'data-toggle' => 'tab'}= t 'overview'
+    %li
+      %a{:href => '#charges', :'data-toggle' => 'tab'}= EventCharge.model_name.human count: @event.charges.count
+    %li
+      %a{:href => '#comments', :'data-toggle' => 'tab'}= EventComment.model_name.human count: @event.comments.count
+  
+  .tab-content
+    #overview.tab-pane.active
+    
+      %h3= Event.human_attribute_name :description
+      %p= @event.description
+      
+      %h3= Event.human_attribute_name :owner
+      %p= @event.owner.email
+      
+      - if @event.is_owner? current_user
+        %h3= Event.human_attribute_name :total_costs
+        %p= @event.total_costs
+      
+      
+      .btn-group
+        - if can? :update, @event
+          = link_to t('edit'), edit_event_path(@event), class: 'btn'
+        = link_to t('back'), events_path, class: 'btn'
+    
+    #charges.tab-pane
+      = render 'event_charges/index'
+    
+    #comments.tab-pane
+      %h2 Comments
+      .comments
+        - @event.comments.each_with_index do |comment, index|
+          %div{:id => "event_#{comment.id}", class: cycle('odd', 'even')}
+            .comment_headline
+              .index #{index+1}.
+              .author #{comment.author.email}
+            %p.comment_text
+              = comment.text
+          %br
+      
+        %div
+      
+      %h3 New Comment
+      = bootstrap_form_for @event.comments.new, url: comment_event_path(@event) do |f|
+        = f.text_field :text
+        = f.actions do
+          = f.primary t 'save'

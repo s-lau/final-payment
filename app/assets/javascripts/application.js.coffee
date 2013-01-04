@@ -15,3 +15,11 @@
 #= require bootstrap
 #= require gritter
 #= require_tree .
+
+$ ->
+  if url_hash = window.location.hash
+    $('a[href=' + url_hash + ']').tab('show')
+  $('[data-toggles]').on 'click', (e) ->
+    s = $(e.delegateTarget)
+    t = s.attr 'data-toggles'
+    $(t).toggle()

@@ -1,2 +1,0 @@
-class EventCommentsController < ApplicationController
-end

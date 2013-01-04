@@ -1,20 +1,22 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource except: :comment
 
   def comment
+    authorize! :create, @event => EventComment
     event = Event.find params[:id]
     text = params[:comment_text]
-
-    comment = EventComment.create text: text,
-      author: current_user,
-      event: event
-
-    #TODO make this beautiful
-    if comment.persisted?
-      redirect_to event, notice: "Comment saved"
-    else
-      redirect_to event, notice: "Comment not saved"
+    
+    comment = event.comments.build params[:event_comment] do |ec|
+      ec.author = current_user
     end
+
+    if comment.save
+      gflash :notice
+    else
+      gflash :error
+    end
+    redirect_to event_path(event, anchor: 'comments')
   end
 
   # GET /events
@@ -22,7 +24,7 @@ class EventsController < ApplicationController
   def index
     @events = {
       total_number_of_events_in_database: Event.count,
-      own_events: Event.where(owner: current_user)
+      own_events: EventDecorator.decorate(Event.where(owner: current_user))
     }
 
     respond_to do |format|
@@ -34,7 +36,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+    @event = EventDecorator.decorate(Event.find(params[:id]))
+    @event_charges = EventChargeDecorator.decorate(@event.charges)
 
     respond_to do |format|
       format.html # show.html.erb

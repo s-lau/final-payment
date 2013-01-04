@@ -10,6 +10,9 @@ gem 'sqlite3'
 gem 'devise'
 gem 'rails-i18n'
 gem 'uuidtools'
+gem 'draper'
+gem 'money-rails'
+gem 'cancan'
 
 gem 'haml-rails'
 gem 'jquery-rails'
@@ -20,6 +23,7 @@ gem 'dynamic_form'
 group :test do
   gem 'rspec'
   gem 'database_cleaner'
+  gem 'capybara'
   gem 'pry'
   gem 'factory_girl_rails'
 end

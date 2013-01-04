@@ -10,17 +10,22 @@ de:
   edit: Bearbeiten
   destroy: Löschen
   back: Zurück
+  overview: Übersicht
   
   attributes:
     email: E-Mail
     name: Name
     description: Beschreibung
+    price: Preis
     
   
   activerecord:
     attributes:
       event:
         owner: Organisator
+        total_costs: Gesamtkosten
+      event_charge:
+        price_cents: Preis (Cent)
       user:
         remember_me: Eingeloggt bleiben
         password: Passwort
@@ -30,6 +35,9 @@ de:
       event:
         one: Ereignis
         other: Ereignisse
+      event_charge:
+        one: Kostenpunkt
+        other: Kostenpunkte
       user: Benutzer
   
   events:
@@ -41,7 +49,13 @@ de:
       total_events: "Insgesamt %{count} Ereignisse in der Datenbank."
       new_event: Ereignis erstellen
     edit:
-      heading: Ereignis bearbeiten 
+      heading: Ereignis bearbeiten
+  
+  event_charges:
+    index:
+      new_event_charge: Neuer Kostenpunkt
+    edit:
+      heading: Kostenpunkt bearbeiten
   
   users:
     sign_up: Registrieren

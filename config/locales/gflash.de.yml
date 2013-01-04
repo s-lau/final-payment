@@ -25,3 +25,11 @@ de:
       update:
         notice: Ereignis geändert.
         error: Ereignis konnte nicht geändert werden.
+    
+    event_charges:
+      create:
+        notice: Kostenpunkt eingetragen.
+        error: &ec_error Irgendwie stimmt der Kostenpunkt nicht.
+      update:
+        notice: Kostenpunkt geändert.
+        error: *ec_error

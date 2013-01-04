@@ -1,11 +1,13 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
+  
   # GET /events
   # GET /events.json
   def index
     @events = {
       total_number_of_events_in_database: Event.count,
-      own_events: Event.where(owner: current_user)
+      own_events: EventDecorator.decorate(Event.where(owner: current_user))
     }
 
     respond_to do |format|
@@ -17,7 +19,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+    @event = EventDecorator.decorate(Event.find(params[:id]))
+    @event_charges = EventChargeDecorator.decorate(@event.charges)
 
     respond_to do |format|
       format.html # show.html.erb

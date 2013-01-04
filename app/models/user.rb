@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :events, foreign_key: "owner"
+  has_many :charges, class_name: 'EventCharge', foreign_key: :event_uuid
 end

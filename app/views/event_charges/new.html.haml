@@ -1,0 +1,8 @@
+.page-header
+  %h2= t 'event_charges.index.new_event_charge'
+
+= bootstrap_form_for @event_charge, url: event_charges_path(@event) do |f|
+  = render 'form', f: f
+
+.btn-group
+  = link_to t('back'), event_charges_path, class: 'btn'

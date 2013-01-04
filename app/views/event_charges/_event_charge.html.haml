@@ -1,0 +1,12 @@
+%tr
+  %td= event_charge.name
+  %td= event_charge.price
+  -#%td
+    - if can? :read, event_charge
+      = link_to t('show'), event_charge_path(event_charge.event, event_charge), class: 'btn'
+  %td
+    - if can? :update, event_charge
+      = link_to t('edit'), edit_event_charge_path(event_charge.event, event_charge), class: 'btn'
+  %td
+    - if can? :destroy, event_charge
+      = link_to t('destroy'), event_charge_path(event_charge.event, event_charge), method: :delete, data: { confirm: t('sure') }, class: 'btn btn-danger'

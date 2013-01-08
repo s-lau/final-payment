@@ -9,7 +9,6 @@ gem 'sqlite3'
 
 gem 'devise'
 gem 'rails-i18n'
-gem 'uuidtools'
 gem 'draper'
 gem 'money-rails'
 gem 'cancan'

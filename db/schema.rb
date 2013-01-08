@@ -11,39 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230141102) do
+ActiveRecord::Schema.define(:version => 20130107143427) do
 
   create_table "event_charges", :force => true do |t|
     t.string   "name"
-    t.integer  "price_cents",                  :default => 0,     :null => false
-    t.string   "price_currency",               :default => "USD", :null => false
-    t.string   "event_uuid",     :limit => 36
+    t.integer  "price_cents",    :default => 0,     :null => false
+    t.string   "price_currency", :default => "USD", :null => false
+    t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
-  add_index "event_charges", ["event_uuid"], :name => "index_event_charges_on_event_uuid"
+  add_index "event_charges", ["event_id"], :name => "index_event_charges_on_event_id"
   add_index "event_charges", ["user_id"], :name => "index_event_charges_on_user_id"
 
   create_table "event_comments", :force => true do |t|
     t.text     "text"
-    t.string   "event_uuid", :limit => 36
+    t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "events", :id => false, :force => true do |t|
-    t.string   "uuid",        :limit => 36
+  create_table "event_participations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "event_participations", ["event_id"], :name => "index_event_participations_on_event_id"
+  add_index "event_participations", ["user_id"], :name => "index_event_participations_on_user_id"
+
+  create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "owner"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
-
-  add_index "events", ["uuid"], :name => "index_events_on_uuid"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

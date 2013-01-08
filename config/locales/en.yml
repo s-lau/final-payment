@@ -8,6 +8,7 @@ en:
   create: Create
   show: Show
   edit: Edit
+  join: Join
   destroy: Destroy
   
   activerecord:

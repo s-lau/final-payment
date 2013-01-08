@@ -45,6 +45,16 @@ class EventsController < ApplicationController
     end
   end
 
+  # POST /events/1/join
+  def join
+    if @event.participants << current_user
+      gflash :notice
+    else
+      gflash :error
+    end
+    redirect_to @event
+  end
+
   # GET /events/new
   # GET /events/new.json
   def new

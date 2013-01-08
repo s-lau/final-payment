@@ -5,7 +5,7 @@ feature '13 B: Registration' do
   
   scenario 'Successful Registration' do
     -> {
-      sign_up_with 'user@example.com', '123456'
+      sign_up_with 'user@example.com', '123456', 'user'
     }.should change(User, :count).by 1
   end
 

@@ -8,7 +8,8 @@ class Ability
     
     # all
     can :create, Event
-    
+    can :join, Event
+
     # events owner
     can :modify, Event, owner: user # TODO and event not closed
     can :manage, EventCharge, event: { owner: user } # TODO and event not closed

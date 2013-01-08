@@ -3,7 +3,7 @@ require 'spec_helper'
 
 feature '14 B: Login' do
   background do
-    User.create! :email => 'user@example.com', :password => '123456'
+    User.create! :email => 'user@example.com', :password => '123456', :username => 'user'
   end
   
   scenario 'Successful Login' do

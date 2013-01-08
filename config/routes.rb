@@ -3,6 +3,7 @@ Chargeback::Application.routes.draw do
   resources :events do
     member do
       post 'comment'
+      post 'join'
     end
     resources :event_charges, as: :charges, except: [:show, :new]
   end

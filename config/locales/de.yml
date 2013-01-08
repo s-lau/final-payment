@@ -8,10 +8,17 @@ de:
   create: Erstellen
   show: Anzeigen
   edit: Bearbeiten
+  join: Beitreten
   destroy: Löschen
   back: Zurück
   overview: Übersicht
   
+  gflash:
+    events:
+      join:
+        notice: Sie sind einem Ereigniss beigetreten
+        error: Es ist ein Fehler aufgetaucht beim Beitreten des Ereignisses
+
   attributes:
     email: E-Mail
     name: Name

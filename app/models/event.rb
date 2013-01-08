@@ -1,15 +1,16 @@
 class Event < ActiveRecord::Base
-  self.primary_key = "uuid"
   
   belongs_to :owner, foreign_key: "owner", class_name: "User"
 
-  has_many :comments, foreign_key: "event_uuid", class_name: "EventComment"
-  has_many :charges, class_name: 'EventCharge', foreign_key: :event_uuid
-  
+  has_many :comments, class_name: "EventComment"
+  has_many :charges, class_name: 'EventCharge'
+
+  has_many :event_participations
+  has_many :participants, through: :event_participations, source: :user
+
   monetize :total_costs_cents
   
-  attr_accessible :description, :name, :uuid, :owner
-  before_create :generate_uuid
+  attr_accessible :description, :name, :owner
   
   
   def total_costs_cents
@@ -19,11 +20,5 @@ class Event < ActiveRecord::Base
   def is_owner? user
     self.owner == user
   end
-  
-  
-  private
-  #TODO put uuidtools mixin in lib/
-  def generate_uuid
-    self.uuid = UUIDTools::UUID.timestamp_create().to_s
-  end
+    
 end

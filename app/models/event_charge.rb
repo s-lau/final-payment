@@ -1,6 +1,6 @@
 class EventCharge < ActiveRecord::Base
   
-  belongs_to :event, foreign_key: :event_uuid, primary_key: :uuid
+  belongs_to :event
   belongs_to :user
   
   attr_accessible :name, :price

@@ -9,6 +9,7 @@ class Ability
     # all
     can :create, Event
     can :join, Event
+    can :leave, Event
 
     # events owner
     can :modify, Event, owner: user # TODO and event not closed

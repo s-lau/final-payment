@@ -17,12 +17,9 @@ class Ability
     can :manage, EventComment, event: { owner: user }
     
     # events participants
-    # can :read, Event, ...
-    # can :create, EventCharge, ...
-    # can [:update, :delete], EventCharge, ... # TODO and event not closed
-    # can :create, EventComment, ...
-    
-    # charges owner
+    can :read, Event, event_participations: { user_id: user.id }
+    can :create, EventCharge, event: { event_participations: { user_id: user.id } }
     can :modify, EventCharge, user: user # TODO and event not closed
+    can :create, EventComment, event: { event_participations: { user_id: user.id } }
   end
 end

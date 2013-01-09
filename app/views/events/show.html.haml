@@ -27,7 +27,7 @@
       .btn-group
         - if not @event.is_participant? current_user 
           = link_to t('join'), join_event_path, class: 'btn', method: 'post'
-        - if @event.is_participant? current_user and not @event.is_owner? current_user
+        - if @event.is_participant? current_user
           = link_to t('leave'), leave_event_path, class: 'btn', method: 'post'
         - if can? :update, @event
           = link_to t('edit'), edit_event_path(@event), class: 'btn'

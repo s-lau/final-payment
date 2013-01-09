@@ -25,7 +25,13 @@ de:
       update:
         notice: Ereignis geändert.
         error: Ereignis konnte nicht geändert werden.
-    
+      join:
+        notice: Sie sind einem Ereigniss beigetreten.
+        error: Es ist ein Fehler aufgetaucht beim Beitreten des Ereignisses.
+      leave:
+        notice: Sie haben das Ereignis verlassen.
+        error: Es ist ein Fehler aufgetaucht beim Verlassen des Ereignisses.
+     
     event_charges:
       create:
         notice: Kostenpunkt eingetragen.

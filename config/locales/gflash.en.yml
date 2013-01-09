@@ -25,6 +25,12 @@ en:
       update:
         notice: Event was successfully updated.
         error: Could not update event.
+      join:
+        notice: You have successfully joind this event
+        error: Could not while leaving the event
+      leave:
+        notice: You have successfully left this event
+        error: Could not leave event
     
     event_charges:
       create: Charge was successfully created.

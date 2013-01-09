@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource except: :comment
+  load_and_authorize_resource except: [:comment, :show]
 
   def comment
     authorize! :create, @event => EventComment
@@ -47,7 +47,22 @@ class EventsController < ApplicationController
 
   # POST /events/1/join
   def join
-    if @event.participants << current_user
+    participation = @event.event_participations.build do |p|
+      p.user = current_user
+    end
+
+    if participation.save
+      gflash :notice
+    else
+      gflash :error
+    end
+    redirect_to @event
+  end
+
+  # POST /events/1/leave
+  def leave
+    destroyed = EventParticipation.where(["user_id = ? AND event_id=?", current_user, @event]).destroy_all
+    if destroyed.length > 0 
       gflash :notice
     else
       gflash :error

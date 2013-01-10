@@ -4,7 +4,7 @@
 - if can? :create, @event.charges.build
   = link_to t('.new_event_charge'), '#', class: 'btn btn-primary', data: { toggles: '#new_event_charge' }
 
-  = bootstrap_form_for EventCharge.new, url: event_charges_path(@event), html: { class: 'hide' } do |f|
+  = bootstrap_form_for EventCharge.new, url: event_charges_path(@event), html: { class: 'hide', multipart: true } do |f|
     = render 'event_charges/form', f: f
 
 
@@ -12,6 +12,7 @@
   %tr
     %th= EventCharge.human_attribute_name :name
     %th= EventCharge.human_attribute_name :price
+    %th
     %th
     %th
 

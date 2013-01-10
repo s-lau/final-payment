@@ -14,6 +14,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require gritter
+#= require colorbox-rails
 #= require_tree .
 
 $ ->

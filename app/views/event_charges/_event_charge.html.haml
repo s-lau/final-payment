@@ -1,9 +1,9 @@
 %tr
   %td= event_charge.name
   %td= event_charge.price
-  -#%td
-    - if can? :read, event_charge
-      = link_to t('show'), event_charge_path(event_charge.event, event_charge), class: 'btn'
+  %td
+    - if event_charge.bill.uploaded?
+      = link_to image_tag(event_charge.bill.url :thumb), event_charge.bill.url, data: { colorbox: true }
   %td
     - if can? :update, event_charge
       = link_to t('edit'), edit_event_charge_path(event_charge.event, event_charge), class: 'btn'

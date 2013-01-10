@@ -28,6 +28,8 @@ de:
         total_costs: Gesamtkosten
       event_charge:
         price_cents: Preis (Cent)
+        bill: Rechnung
+        remove_bill: Rechnung löschen
       user:
         remember_me: Eingeloggt bleiben
         password: Passwort

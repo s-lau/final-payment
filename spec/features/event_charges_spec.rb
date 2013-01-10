@@ -13,7 +13,8 @@ feature '5 C: Kostenpunkt bzw. Posten zu Ereignis hinzufügen' do
     visit event_path(@event)
     within '#main #charges' do
       fill_in 'Name', :with => 'Ausgabe'
-      fill_in 'Preis', :with => '12,34'
+      fill_in 'Preis', :with => '18,24'
+      attach_file 'Rechnung', 'spec/fixtures/bill.jpg'
       -> {
         click_button 'Speichern'
       }.should change(@event.charges, :count).by 1
@@ -23,7 +24,8 @@ feature '5 C: Kostenpunkt bzw. Posten zu Ereignis hinzufügen' do
     
     within '#main #charges .table tr:nth-child(2)' do
       page.should have_content 'Ausgabe'
-      page.should have_content '€12,34'
+      page.should have_content '€18,24'
+      page.should have_css 'td a img'
     end
   end
 
@@ -34,12 +36,20 @@ feature '6. C: Kostenpunkt bzw. Posten bearbeiten/löschen' do
     # TODO use factory girl...
     user = User.create! email: 'user@example.com', password: '123456', username: 'Foo'
     @event = Event.create! name: 'TEST', owner: user
-    @event_charge = @event.charges.create! name: 'Cafe', price: '25,00'
+    @event_charge = @event.charges.build name: 'Cafe', price: '25,00'
+    @event_charge.bill.store! File.open('spec/fixtures/bill.jpg')
+    @event_charge.save!
   end
   
   scenario 'Edit charge' do
     sign_in_with 'user@example.com', '123456'
     visit event_path(@event)
+    
+    within '#main #charges .table tr:nth-child(2)' do
+      page.should have_content 'Cafe'
+      page.should have_content '€25'
+      page.should have_css 'td a img'
+    end
     
     within '#main #charges .table' do
       click_on 'Bearbeiten'
@@ -50,13 +60,17 @@ feature '6. C: Kostenpunkt bzw. Posten bearbeiten/löschen' do
     within '#main' do
       find_field('Name').value.should eql('Cafe')
       fill_in 'Preis', with: '23,24'
+      check 'Rechnung löschen'
     end
-    -> {
-      click_button 'Speichern'
-      @event_charge.reload
-    }.should change(@event_charge, :price_cents).from(2500).to 2324
+    
+    click_button 'Speichern'
     
     current_path.should eql(event_path(@event))
+    
+    within '#main #charges .table tr:nth-child(2)' do
+      page.should have_content '€23,24'
+      page.should_not have_css 'td a img'
+    end
   end
   
   scenario 'Delete charge' do

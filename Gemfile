@@ -12,12 +12,15 @@ gem 'rails-i18n'
 gem 'draper'
 gem 'money-rails'
 gem 'cancan'
+gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'bootstrap_form'
 gem 'gritter'
 gem 'dynamic_form'
+gem 'colorbox-rails'
 
 group :test do
   gem 'rspec'

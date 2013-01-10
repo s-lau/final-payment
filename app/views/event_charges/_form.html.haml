@@ -1,4 +1,7 @@
 = f.text_field :name
 = f.price_field :price
+= f.file_field :bill
+- if f.object.bill.uploaded?
+  = f.check_box :remove_bill, :label => f.label(:remove_bill)
 = f.actions do
   = f.primary t('save')

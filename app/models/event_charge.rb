@@ -3,9 +3,10 @@ class EventCharge < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   
-  attr_accessible :name, :price
-  
   monetize :price_cents
+  mount_uploader :bill, BillUploader
+  
+  attr_accessible :name, :price, :bill, :remove_bill
   
   validates :name, presence: true
   

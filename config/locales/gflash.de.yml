@@ -26,7 +26,7 @@ de:
         notice: Ereignis geändert.
         error: Ereignis konnte nicht geändert werden.
       join:
-        notice: Sie sind einem Ereigniss beigetreten.
+        notice: Sie sind dem Ereigniss beigetreten.
         error: Es ist ein Fehler aufgetaucht beim Beitreten des Ereignisses.
       leave:
         notice: Sie haben das Ereignis verlassen.

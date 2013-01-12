@@ -24,13 +24,14 @@
         %h3= Event.human_attribute_name :total_costs
         %p= @event.total_costs
       
+        %h3= t 'join'
+        %p= t '.join_instructions_html', join_url: join_event_url(token: @event.join_token), qr_link: link_to('QR-Code', join_qr_code_event_path(@event, format: :png))
+      
       
       .btn-group
         - unless @event.is_owner? current_user
           - if @event.is_participant? current_user
             = link_to t('leave'), leave_event_path, class: 'btn', method: 'post'
-          - else
-            = link_to t('join'), join_event_path, class: 'btn', method: 'post'
         - if can? :update, @event
           = link_to t('edit'), edit_event_path(@event), class: 'btn'
         = link_to t('back'), events_path, class: 'btn'

@@ -3,8 +3,9 @@ Chargeback::Application.routes.draw do
   resources :events do
     member do
       post 'comment'
-      post 'join'
+      get  'j/:token', action: :join, as: :join
       post 'leave'
+      get  'join_qr_code'
     end
     resources :event_charges, as: :charges, except: [:show, :new]
   end

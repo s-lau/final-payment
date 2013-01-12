@@ -26,7 +26,10 @@ en:
       new_event: New Event
     edit:
       heading: Editing event
-      
+    show:
+      join_instructions_html: |
+        Send the URL <b>%{join_url}</b> to friends who should participate.<br/>
+        You can also use this %{qr_link}.
   
   users:
     sign_up: Sign up

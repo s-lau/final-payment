@@ -54,6 +54,10 @@ de:
       new_event: Ereignis erstellen
     edit:
       heading: Ereignis bearbeiten
+    show:
+      join_instructions_html: |
+        Gib einfach die URL <b>%{join_url}</b> an Leute weiter die beitreten dürfen.<br/>
+        Alternativ kann auch der %{qr_link} verwendet werden.
   
   event_charges:
     index:

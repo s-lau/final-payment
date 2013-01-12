@@ -11,9 +11,15 @@ feature '15 A: Benutzer tritt "Ereignis" bei' do
 
   scenario 'Join and leave event' do
     sign_in_with 'user2@example.com', '123456'
-    visit event_path(@event)
+    
+    # wrong token
     -> {
-      click_on 'Beitreten'
+      visit join_event_path(@event, token: 'foooo')
+    }.should_not change(@event.event_participations, :count)
+    
+    # right token
+    -> {
+      visit join_event_path(@event, token: @event.join_token)
     }.should change(@event.event_participations, :count).by 1
     
     -> {

@@ -24,4 +24,8 @@ class Event < ActiveRecord::Base
   def is_participant? user
     participants.exists? user or is_owner? user 
   end
+  
+  def join_token
+    Digest::MD5.hexdigest([Chargeback::Application.config.secret_token, created_at.utc.to_i].join)[0..4]
+  end
 end

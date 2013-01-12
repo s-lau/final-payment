@@ -153,6 +153,9 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
+    rqrcode (0.4.2)
+    rqrcode-rails3 (0.1.6)
+      rqrcode (>= 0.4.2)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
@@ -228,6 +231,7 @@ DEPENDENCIES
   pry
   rails (= 3.2.8)
   rails-i18n
+  rqrcode-rails3
   rspec
   rspec-rails
   sass-rails (~> 3.2.3)

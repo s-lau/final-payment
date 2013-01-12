@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource except: [:comment, :show]
+  load_and_authorize_resource except: [:comment, :show, :join_qr_code]
 
   def comment
     authorize! :create, @event => EventComment
@@ -46,18 +46,34 @@ class EventsController < ApplicationController
     end
   end
 
-  # POST /events/1/join
+  # GET /events/1/j/:token
   def join
-    participation = @event.event_participations.build do |p|
-      p.user = current_user
-    end
-
-    if participation.save
-      gflash :notice
+    if @event.join_token == params[:token]
+      participation = @event.event_participations.build do |p|
+        p.user = current_user
+      end
+  
+      if participation.save
+        gflash :notice
+      else
+        gflash :error
+      end
     else
       gflash :error
     end
     redirect_to @event
+  end
+  
+  def join_qr_code
+    @event = Event.find params[:id]
+    authorize! :update, @event
+    url = join_event_url @event, token: @event.join_token
+    respond_to do |format|
+      format.svg  { render :qrcode => url }
+      format.png  { render :qrcode => url }
+      format.gif  { render :qrcode => url }
+      format.jpeg { render :qrcode => url }
+    end
   end
 
   # POST /events/1/leave

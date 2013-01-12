@@ -21,6 +21,7 @@ gem 'bootstrap_form'
 gem 'gritter'
 gem 'dynamic_form'
 gem 'colorbox-rails'
+gem 'rqrcode-rails3'
 
 group :test do
   gem 'rspec'

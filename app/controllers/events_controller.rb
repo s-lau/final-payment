@@ -70,6 +70,13 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  #POST /events/1/close
+  def close
+    @event.update_attributes(:closed => true)
+    @event.save
+    redirect_to @event
+  end
+
   # GET /events/new
   # GET /events/new.json
   def new

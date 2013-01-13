@@ -10,8 +10,7 @@ class Event < ActiveRecord::Base
 
   monetize :total_costs_cents
   
-  attr_accessible :description, :name, :owner
-    
+  attr_accessible :description, :name, :owner, :closed
   
   def total_costs_cents
     charges.sum :price_cents
@@ -24,4 +23,9 @@ class Event < ActiveRecord::Base
   def is_participant? user
     participants.exists? user or is_owner? user 
   end
+
+  def is_closable? user
+    charges.length > 0 and is_owner? user and not closed
+  end
+
 end

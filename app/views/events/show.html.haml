@@ -1,3 +1,4 @@
+
 .page-header
   %h1= @event.name
     
@@ -25,6 +26,8 @@
       
       
       .btn-group
+        - if @event.is_closable? current_user
+          = link_to t('close_event'), close_event_path, class: 'btn', method: 'post'
         - if not @event.is_participant? current_user 
           = link_to t('join'), join_event_path, class: 'btn', method: 'post'
         - if @event.is_participant? current_user and not @event.is_owner? current_user

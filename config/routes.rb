@@ -5,6 +5,7 @@ Chargeback::Application.routes.draw do
       post 'comment'
       post 'join'
       post 'leave'
+      post 'close'
     end
     resources :event_charges, as: :charges, except: [:show, :new]
   end

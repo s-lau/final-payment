@@ -31,7 +31,9 @@ de:
       leave:
         notice: Sie haben das Ereignis verlassen.
         error: Es ist ein Fehler aufgetaucht beim Verlassen des Ereignisses.
-     
+      close:
+        notice: Alle Teilnehmer wurden über die Abrechnung per E-Mail benachrichtigt 	
+        error: Es ist ein Fehler beim Abrechnen des Ereignisses aufgetreten
     event_charges:
       create:
         notice: Kostenpunkt eingetragen.

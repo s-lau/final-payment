@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
   end
 
   def is_closable? user
-    charges.length > 0 and is_owner? user and not closed
+    charges.length > 0 and is_owner? user# and not closed
   end
 
 end

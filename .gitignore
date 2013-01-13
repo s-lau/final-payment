@@ -27,3 +27,5 @@ rerun.txt
 pickle-email-*.html
 .project
 /.settings
+*~
+*#

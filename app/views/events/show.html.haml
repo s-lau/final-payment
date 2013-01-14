@@ -7,9 +7,9 @@
       %a{:href => '#overview', :'data-toggle' => 'tab'}= t 'overview'
     - if @event.is_participant? current_user
       %li
-        %a{:href => '#charges', :'data-toggle' => 'tab'}= EventCharge.model_name.human count: @event.charges.count
+        %a{:href => '#charges', :'data-toggle' => 'tab'}= EventCharge.model_name.human count: 0
       %li
-        %a{:href => '#comments', :'data-toggle' => 'tab'}= EventComment.model_name.human count: @event.comments.count
+        %a{:href => '#comments', :'data-toggle' => 'tab'}= EventComment.model_name.human count: 0
 
   .tab-content
     #overview.tab-pane.active
@@ -41,7 +41,7 @@
         = render 'event_charges/index'
 
       #comments.tab-pane
-        %h2 Comments
+        %h2= EventComment.model_name.human
         .comments
           - @event.comments.each_with_index do |comment, index|
             %div{:id => "event_#{comment.id}", class: cycle('odd', 'even')}
@@ -56,7 +56,7 @@
           %div
 
         - if can? :create, @event.comments.build
-          %h3 New Comment
+          %h3= t 'event_comments.new'
           = bootstrap_form_for @event.comments.new, url: comment_event_path(@event) do |f|
             = f.text_field :text
             = f.actions do

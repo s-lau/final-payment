@@ -10,6 +10,7 @@ en:
   edit: Edit
   join: Join
   destroy: Destroy
+  close_event: Bill event
   
   activerecord:
     attributes:

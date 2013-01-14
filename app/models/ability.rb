@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     user ||= User.new
     
-    alias_action :read, :update, :destroy, :to => :modify
+    alias_action :close, :read, :update, :destroy, :to => :modify
     
     # all
     can :create, Event

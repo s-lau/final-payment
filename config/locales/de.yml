@@ -13,6 +13,7 @@ de:
   destroy: Löschen
   back: Zurück
   overview: Übersicht
+  close_event: Abrechnen
   
   attributes:
     email: E-Mail

@@ -87,6 +87,18 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  #POST /events/1/close
+  def close
+    @event.update_attributes(:closed => true)
+    if @event.save
+      gflash :notice
+    else 
+      gflash :error
+    end
+    EventMailer.event_closed_mail(current_user, @event).deliver
+    redirect_to @event
+  end
+
   # GET /events/new
   # GET /events/new.json
   def new

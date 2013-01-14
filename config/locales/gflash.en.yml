@@ -31,6 +31,9 @@ en:
       leave:
         notice: You have successfully left this event
         error: Could not leave event
+      close:
+        notice: An email notifications has been sent to all participants
+        error: An error occurred while billing the event
     
     event_charges:
       create: Charge was successfully created.

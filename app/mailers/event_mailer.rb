@@ -1,8 +1,5 @@
 class EventMailer < ActionMailer::Base
-  default :from => "notifications@chargeback.com",
-          :host => "http://www.chargeback.com",
-          :controller => "events",
-          :only_path => false
+  default :from => "notifications@chargeback.com"
 
   def event_closed_mail (user, event)
     @user = user

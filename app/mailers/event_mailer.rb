@@ -5,7 +5,7 @@ class EventMailer < ActionMailer::Base
     @user = user
     @event = event
     mail(:to => event.participants.all.map(&:email), 
-         :subject => "Event: #{event.name} closed",
+         :subject => "Billing for #{event.name}",
          :template_path => "mails",
          :template_name => "event_closed")
   end

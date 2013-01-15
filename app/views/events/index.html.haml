@@ -15,7 +15,7 @@
     %th
 
   = render @events[:own_events]
-    
+
 
 - if can? :create, Event
   = link_to t('.new_event'), new_event_path, :class => 'btn btn-primary'
@@ -30,5 +30,22 @@
     %th
     %th
     %th
-    
+
   = render @events[:joined_events]
+
+%h2= t '.headings.trashed'
+= t '.infos.trashed'
+
+- if @events[:trashed_events].count > 0
+  %table.table
+    %tr
+      %th= Event.human_attribute_name :name
+      %th= Event.human_attribute_name :trashed_at
+
+    - @events[:trashed_events].each do |trashed_event|
+      %tr
+        %td=trashed_event.name
+        %td=trashed_event.trashed_at
+
+  - else
+    %strong.lead= t 'none'

@@ -14,6 +14,7 @@ de:
   back: Zurück
   overview: Übersicht
   close_event: Abrechnen
+  none: Keine
 
   attributes:
     email: E-Mail
@@ -27,6 +28,7 @@ de:
       event:
         owner: Organisator
         total_costs: Gesamtkosten
+        trashed_at: weggeworfen am
       event_charge:
         price_cents: Preis (Cent)
         bill: Rechnung
@@ -50,10 +52,15 @@ de:
 
   events:
     index:
+      trash: Wegwerfen
+      recover: Wiederherstellen
       headings:
         overview: Ereignisübersicht
         organized: Deine Ereignisse
         contributed: Ergnisse an denen du teilgenommen hast
+        trashed: Papierkorb
+      infos:
+        trashed: In dieser Liste findest du deine recycleten Ereignisse.
       total_events: "Insgesamt %{count} Ereignisse in der Datenbank."
       new_event: Ereignis erstellen
     edit:

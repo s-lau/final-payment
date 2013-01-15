@@ -27,6 +27,9 @@ en:
         overview: Events overview
         organized: Events you organized
         contributed: Events you contributed to
+        trashed: Trashed Events
+      infos:
+        trashed: This is a list of events that have been organized by you, but are trashed right now.
       total_events: "Total number of events in database: %{count}"
       new_event: New Event
     edit:

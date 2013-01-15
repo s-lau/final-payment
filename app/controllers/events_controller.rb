@@ -24,8 +24,9 @@ class EventsController < ApplicationController
   def index
     @events = {
       total_number_of_events_in_database: Event.count,
-      own_events: EventDecorator.decorate(Event.where(owner: current_user)),
-      joined_events: current_user.joined_events
+      own_events: EventDecorator.decorate(Event.active.where(owner: current_user)),
+      joined_events: current_user.joined_events.active,
+      trashed_events: current_user.events.trashed
     }
 
     respond_to do |format|

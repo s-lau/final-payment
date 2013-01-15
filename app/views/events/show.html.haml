@@ -41,7 +41,7 @@
         = render 'event_charges/index'
 
       #comments.tab-pane
-        %h2= EventComment.model_name.human
+        %h2= EventComment.model_name.human count:0
         .comments
           - @event.comments.each_with_index do |comment, index|
             %div{:id => "event_#{comment.id}", class: cycle('odd', 'even')}

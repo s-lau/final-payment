@@ -11,12 +11,16 @@ en:
   join: Join
   destroy: Destroy
   close_event: Bill event
-  
+
   activerecord:
+    models:
+      event_comments:
+        one: Comment
+        other: Comments
     attributes:
       event:
         owner: Organizer
-  
+
   events:
     index:
       headings:
@@ -31,7 +35,9 @@ en:
       join_instructions_html: |
         Send the URL <b>%{join_url}</b> to friends who should participate.<br/>
         You can also use this %{qr_link}.
-  
+
+  event_comments:
+    new: New Comment
   users:
     sign_up: Sign up
     sign_in: Sign in
@@ -39,7 +45,7 @@ en:
     no_confirmation: No confirmation received?
     no_unlock: No unlock instructions received?
     sign_in_provider: "Sign in with %{provider}"
-  
+
     passwords:
       new:
         submit: Send me reset password instructions
@@ -47,7 +53,7 @@ en:
         heading: Change your password
         new_password: "New password"
         submit: "Change my password"
-  
+
     registrations:
       edit:
         cancel: "Cancel Account!!!"

@@ -1,7 +1,7 @@
 de:
   app:
     title: Final Payment
-  
+
   save: Speichern
   update: Aktualisieren
   sure: Wirklich? Sicher???
@@ -14,14 +14,14 @@ de:
   back: Zurück
   overview: Übersicht
   close_event: Abrechnen
-  
+
   attributes:
     email: E-Mail
     name: Name
     description: Beschreibung
     price: Preis
-    
-  
+
+
   activerecord:
     attributes:
       event:
@@ -44,7 +44,10 @@ de:
         one: Kostenpunkt
         other: Kostenpunkte
       user: Benutzer
-  
+      event_comment:
+        one: Kommentar
+        other: Kommentare
+
   events:
     index:
       headings:
@@ -59,13 +62,16 @@ de:
       join_instructions_html: |
         Gib einfach die URL <b>%{join_url}</b> an Leute weiter die beitreten dürfen.<br/>
         Alternativ kann auch der %{qr_link} verwendet werden.
-  
+
   event_charges:
     index:
       new_event_charge: Neuer Kostenpunkt
     edit:
       heading: Kostenpunkt bearbeiten
-  
+
+  event_comments:
+    new: Neuer Kommentar
+
   users:
     sign_up: Registrieren
     sign_in: Anmelden
@@ -74,12 +80,12 @@ de:
     no_confirmation: Keine Bestätigung erhalten?
     no_unlock: Keine Entsperranleitung erhalten?
     sign_in_provider: "Anmelden mit %{provider}"
-    
+
     navbar:
       settings: Einstellungen
       account: Benutzerkonto
       events_index: Alle Ereignisse
-    
+
     passwords:
       new:
         submit: Passwortreset einleiten
@@ -87,7 +93,7 @@ de:
         heading: Passwort ändern
         new_password: Neues Passwort
         submit: Passwort ändern
-    
+
     registrations:
       edit:
         cancel: "Konto löschen!!!"

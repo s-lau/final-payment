@@ -30,3 +30,4 @@ pickle-email-*.html
 public/uploads
 *~
 *#
+config/deploy.rb

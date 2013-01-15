@@ -27,18 +27,21 @@ group :test do
   gem 'rspec'
   gem 'database_cleaner'
   gem 'capybara'
-  gem 'pry'
-  gem 'factory_girl_rails'
 end
 
 group :development do
-  gem 'pry'
-  gem 'passenger'
-  gem 'factory_girl_rails'
+  gem 'capistrano'
+  gem 'rvm-capistrano'
 end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'pry'
+  gem 'factory_girl_rails'
+end
+
+group :development, :production do
+  gem 'passenger'
 end
 
 # Gems used only for assets and not required

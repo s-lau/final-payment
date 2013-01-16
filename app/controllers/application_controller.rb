@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     end
     
     def after_sign_in_path_for(resource)
-      events_path
+      session[:user_return_to] || events_path
     end
     
     def after_sign_out_path_for(resource)

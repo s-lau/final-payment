@@ -63,3 +63,10 @@ en:
         help:
           password: "(leave blank if you don't want to change it)"
           password_confirmation: "(we need your current password to confirm your changes)"
+  gflash:
+    events:
+      recover:
+        notice: Event recycled!
+      trash:
+        notice: Event trashed!
+

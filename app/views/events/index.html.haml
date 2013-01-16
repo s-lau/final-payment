@@ -14,7 +14,15 @@
     %th
     %th
 
-  = render @events[:own_events]
+  -# = render @events[:own_events]
+  - @events[:own_events].each do |event|
+    %tr
+      %td= event.name
+      %td= event.description
+      %td= event.total_costs
+      %td= link_to t(:show), event, class: 'btn'
+      %td= link_to t(:edit), edit_event_url(event), class: 'btn'
+      %td= link_to t('events.index.trash'), trash_event_url(event), class: 'btn btn-warning'
 
 
 - if can? :create, Event
@@ -41,11 +49,13 @@
     %tr
       %th= Event.human_attribute_name :name
       %th= Event.human_attribute_name :trashed_at
+      %th
 
     - @events[:trashed_events].each do |trashed_event|
       %tr
         %td=trashed_event.name
         %td=trashed_event.trashed_at
+        %td= link_to t('events.index.recover'), recover_event_url(trashed_event), class: 'btn btn-success'
 
-  - else
-    %strong.lead= t 'none'
+- else
+  %strong.lead= t 'none'

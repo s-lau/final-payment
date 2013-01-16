@@ -107,3 +107,10 @@ de:
         help:
           password: "(leer lassen wenn das Passwort nicht geändert werden soll)"
           current_password: "(Änderungen müssen mit dem aktuellen Passwort bestätigt werden)"
+  gflash:
+    events:
+      recover:
+        notice: Ereignis wiederhergestelt!
+      trash:
+        notice: Ereignis weggeworfen!
+

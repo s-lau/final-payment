@@ -22,6 +22,8 @@ en:
         owner: Organizer
 
   events:
+    trash: Trash it!
+    trash_confirm: Do you really want to throw this event away?
     index:
       headings:
         overview: Events overview

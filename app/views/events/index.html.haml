@@ -22,7 +22,8 @@
       %td= event.total_costs
       %td= link_to t(:show), event, class: 'btn'
       %td= link_to t(:edit), edit_event_url(event), class: 'btn'
-      %td= link_to t('events.index.trash'), trash_event_url(event), class: 'btn btn-warning'
+      %td= link_to t('events.index.trash'), trash_event_url(event),
+        class: 'btn btn-warning', confirm: t('events.index.trash_confirm')
 
 
 - if can? :create, Event

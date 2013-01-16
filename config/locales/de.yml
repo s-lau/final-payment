@@ -53,6 +53,7 @@ de:
   events:
     index:
       trash: Wegwerfen
+      trash_confirm: Wollen Sie dieses Ereignis wirklich in den Papierkorb verschieben?
       recover: Wiederherstellen
       headings:
         overview: Ereignisübersicht

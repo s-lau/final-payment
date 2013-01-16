@@ -14,6 +14,7 @@ de:
   back: Zurück
   overview: Übersicht
   close_event: Abrechnen
+  none: Keine
 
   attributes:
     email: E-Mail
@@ -27,6 +28,7 @@ de:
       event:
         owner: Organisator
         total_costs: Gesamtkosten
+        trashed_at: weggeworfen am
       event_charge:
         price_cents: Preis (Cent)
         bill: Rechnung
@@ -54,10 +56,16 @@ de:
   
   events:
     index:
+      trash: Wegwerfen
+      trash_confirm: Wollen Sie dieses Ereignis wirklich in den Papierkorb verschieben?
+      recover: Wiederherstellen
       headings:
         overview: Ereignisübersicht
         organized: Deine Ereignisse
         contributed: Ergnisse an denen du teilgenommen hast
+        trashed: Papierkorb
+      infos:
+        trashed: In dieser Liste findest du deine weggeworfenen Ereignisse.
       total_events: "Insgesamt %{count} Ereignisse in der Datenbank."
       new_event: Ereignis erstellen
     edit:
@@ -104,3 +112,10 @@ de:
         help:
           password: "(leer lassen wenn das Passwort nicht geändert werden soll)"
           current_password: "(Änderungen müssen mit dem aktuellen Passwort bestätigt werden)"
+  gflash:
+    events:
+      recover:
+        notice: Ereignis wiederhergestelt!
+      trash:
+        notice: Ereignis weggeworfen!
+

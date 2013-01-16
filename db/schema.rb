@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20130116091133) do
     t.boolean  "closed",      :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.boolean  "trashed",     :default => false
+    t.datetime "trashed_at"
   end
 
   create_table "users", :force => true do |t|

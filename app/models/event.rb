@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  
+
   belongs_to :owner, foreign_key: "owner", class_name: "User"
 
   has_many :comments, class_name: "EventComment"
@@ -9,21 +9,32 @@ class Event < ActiveRecord::Base
   has_many :participants, through: :event_participations, source: :user
 
   monetize :total_costs_cents
-  
-  attr_accessible :description, :name, :owner, :closed
-  
+
+  attr_accessible :description, :name, :owner, :closed, :trashed, :trashed_at
+
+  scope :active, where(trashed: false)
+  scope :trashed, where(trashed: true)
+
+  def trash
+    self.update_attributes trashed: true, trashed_at: Time.now
+  end
+
+  def recover
+    self.update_attributes trashed: false, trashed_at: nil
+  end
+
   def total_costs_cents
     charges.sum :price_cents
   end
-  
+
   def is_owner? user
     self.owner == user
   end
-  
+
   def is_participant? user
-    participants.exists? user or is_owner? user 
+    participants.exists? user or is_owner? user
   end
-  
+
   def join_token
     Digest::MD5.hexdigest([Chargeback::Application.config.secret_token, created_at.utc.to_i].join)[0..4]
   end

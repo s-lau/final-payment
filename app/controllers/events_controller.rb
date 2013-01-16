@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource except: [:comment, :show, :join_qr_code]
+  load_and_authorize_resource except: [:comment, :show, :join_qr_code, :trash, :recover]
 
   def comment
     authorize! :create, @event => EventComment
@@ -24,8 +24,9 @@ class EventsController < ApplicationController
   def index
     @events = {
       total_number_of_events_in_database: Event.count,
-      own_events: EventDecorator.decorate(Event.where(owner: current_user)),
-      joined_events: current_user.joined_events
+      own_events: EventDecorator.decorate(Event.active.where(owner: current_user)),
+      joined_events: current_user.joined_events.active,
+      trashed_events: current_user.events.trashed
     }
 
     respond_to do |format|
@@ -136,6 +137,20 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def trash
+    event = Event.find(params[:id])
+    event.trash
+    gflash :notice
+    redirect_to action: :index
+  end
+
+  def recover
+    event = Event.find(params[:id])
+    event.recover
+    gflash :notice
+    redirect_to event
   end
 
   # PUT /events/1

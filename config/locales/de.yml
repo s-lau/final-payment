@@ -60,7 +60,7 @@ de:
         contributed: Ergnisse an denen du teilgenommen hast
         trashed: Papierkorb
       infos:
-        trashed: In dieser Liste findest du deine recycleten Ereignisse.
+        trashed: In dieser Liste findest du deine weggeworfenen Ereignisse.
       total_events: "Insgesamt %{count} Ereignisse in der Datenbank."
       new_event: Ereignis erstellen
     edit:

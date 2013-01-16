@@ -1,0 +1,2 @@
+#locale-switcher.pull-right
+  = select_tag :locale, options_for_select(localized_options(I18n.available_locales, :language), I18n.locale), :class => 'input-small'

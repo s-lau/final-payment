@@ -55,6 +55,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    Capybara.current_session.reset_session!
   end
   
   config.after(:suite) do

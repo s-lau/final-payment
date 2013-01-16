@@ -24,3 +24,5 @@ $ ->
     s = $(e.delegateTarget)
     t = s.attr 'data-toggles'
     $(t).toggle()
+  $('#locale').on 'change.ls', (e) ->
+    window.location.search = 'locale=' + $(e.target).val()

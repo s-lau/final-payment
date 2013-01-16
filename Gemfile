@@ -14,6 +14,7 @@ gem 'money-rails'
 gem 'cancan'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'http_accept_language'
 
 gem 'haml-rails'
 gem 'jquery-rails'

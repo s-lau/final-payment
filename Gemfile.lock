@@ -98,6 +98,7 @@ GEM
       railties (>= 3.1, < 4.1)
     highline (1.6.15)
     hike (1.2.1)
+    http_accept_language (1.0.2)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.4)
@@ -244,6 +245,7 @@ DEPENDENCIES
   factory_girl_rails
   gritter
   haml-rails
+  http_accept_language
   jquery-rails
   mini_magick
   money-rails

@@ -47,7 +47,11 @@ de:
       event_comment:
         one: Kommentar
         other: Kommentare
-
+  
+  language:
+    de: deutsch
+    en: englisch
+  
   events:
     index:
       headings:

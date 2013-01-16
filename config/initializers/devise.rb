@@ -230,14 +230,3 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 end
-
-# replace common flashes with gritter
-DeviseController.class_eval do
-  def set_flash_message(key, kind, options={}) #:nodoc:
-    options[:scope] = "devise.#{controller_name}"
-    options[:default] = Array(options[:default]).unshift(kind.to_sym)
-    options[:resource_name] = resource_name
-    message = I18n.t("#{resource_name}.#{kind}", options)
-    gflash(key => message) if message.present?
-  end
-end

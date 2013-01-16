@@ -20,7 +20,11 @@ en:
     attributes:
       event:
         owner: Organizer
-
+  
+  language:
+    de: german
+    en: english
+  
   events:
     index:
       headings:

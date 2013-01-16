@@ -16,7 +16,7 @@
 
   -# = render @events[:own_events]
   - @events[:own_events].each do |event|
-    %tr
+    %tr{id: "row_event_#{event.id}"}
       %td= event.name
       %td= event.description
       %td= event.total_costs

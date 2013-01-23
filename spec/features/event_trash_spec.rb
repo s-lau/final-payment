@@ -3,9 +3,8 @@ require 'spec_helper'
 
 feature '3. A Titel: Entfernen eines Ereignis' do
   background do
-    # TODO use factory girl...
-    user = User.create! email: 'user@example.com', password: '123456', username: 'Foo'
-    @event = Event.create! name: 'TEST', owner: user
+    user = FactoryGirl.create :confirmed_user, email: 'user@example.com', password: '123456'
+    @event = FactoryGirl.create :event, owner: user
   end
 
   scenario 'trash event' do

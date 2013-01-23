@@ -8,8 +8,9 @@ class Event < ActiveRecord::Base
   has_many :event_participations
   has_many :participants, through: :event_participations, source: :user
 
-  monetize :total_costs_cents 
+  monetize :total_costs_cents
   monetize :costs_for_user_cents
+  monetize :balance_for_user_cents
 
   attr_accessible :description, :name, :owner, :closed, :trashed, :trashed_at, :status
 
@@ -48,6 +49,16 @@ class Event < ActiveRecord::Base
 
   def is_closable? user
     charges.length > 0 and is_owner? user and not closed
+  end
+  
+  def costs_for_user_cents(user = nil)
+    return 0 unless user
+    charges.where(user_id: user.id).sum :price_cents
+  end
+  
+  def balance_for_user_cents(user = nil)
+    return 0 unless user
+    costs_for_user_cents(user) - total_costs_cents / (participants.count + 1) # plus owner 
   end
 
 end

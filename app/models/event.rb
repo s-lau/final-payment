@@ -45,12 +45,14 @@ class Event < ActiveRecord::Base
     charges.length > 0 and is_owner? user and not closed
   end
   
-  def costs_for_user_cents(user)
+  def costs_for_user_cents(user = nil)
+    return 0 unless user
     charges.where(user_id: user.id).sum :price_cents
   end
   
-  def balance_for_user_cents(user)
-    costs_for_user_cents(user) - total_costs_cents / participants.count 
+  def balance_for_user_cents(user = nil)
+    return 0 unless user
+    costs_for_user_cents(user) - total_costs_cents / (participants.count + 1) # plus owner 
   end
 
 end

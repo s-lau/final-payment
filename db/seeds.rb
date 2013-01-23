@@ -11,6 +11,7 @@ User.delete_all
 
 (1..30).each do |n|
   user = User.create email: "test#{n}@example.com", username: "test#{n}", :password => '123', :password_confirmation => '123'
+  user.confirm!
   (1..5).each do |nr|
     Event.create owner:user, name: "User #{n}'s Test-Event No. #{nr}'", description: "Description"
   end

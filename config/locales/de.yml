@@ -29,6 +29,7 @@ de:
         owner: Organisator
         total_costs: Gesamtkosten
         trashed_at: weggeworfen am
+        costs_for_user: Deine noch offenen Beträge
       event_charge:
         price_cents: Preis (Cent)
         bill: Rechnung

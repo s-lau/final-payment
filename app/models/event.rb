@@ -8,9 +8,10 @@ class Event < ActiveRecord::Base
   has_many :event_participations
   has_many :participants, through: :event_participations, source: :user
 
-  monetize :total_costs_cents
+  monetize :total_costs_cents 
+  monetize :costs_for_user_cents
 
-  attr_accessible :description, :name, :owner, :closed, :trashed, :trashed_at
+  attr_accessible :description, :name, :owner, :closed, :trashed, :trashed_at, :status
 
   scope :active, where(trashed: false)
   scope :trashed, where(trashed: true)
@@ -25,6 +26,12 @@ class Event < ActiveRecord::Base
 
   def total_costs_cents
     charges.sum :price_cents
+  end
+
+  def costs_for_user_cents user
+    what_user_payed = charges.where("user_id = ?", user).sum :price_cents
+    what_everyone_should_pay = (charges.sum :price_cents)/(participants.length+1)
+    return Money.new (what_everyone_should_pay - what_user_payed), "EUR"
   end
 
   def is_owner? user

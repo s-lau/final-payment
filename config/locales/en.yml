@@ -28,6 +28,8 @@ en:
   events:
     trash: Trash it!
     trash_confirm: Do you really want to throw this event away?
+    total_costs: Totals costs
+    costs_for_user: Your open charges
     index:
       headings:
         overview: Events overview

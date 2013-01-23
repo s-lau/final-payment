@@ -1,4 +1,4 @@
 class EventDecorator < ApplicationDecorator
   decorates :event
-  monetize :total_costs
+  monetize :total_costs, :balance_for_user, :costs_for_user
 end

@@ -14,16 +14,16 @@
     %th
     %th
 
-  -# = render @events[:own_events]
+  -# = render @events[:own_events] # TODO undry, use partials
   - @events[:own_events].each do |event|
     %tr{id: "row_event_#{event.id}"}
       %td= event.name
       %td= event.description
       %td= event.total_costs
-      %td= link_to t(:show), event, class: 'btn'
-      %td= link_to t(:edit), edit_event_url(event), class: 'btn'
+      %td= link_to t(:show), event, class: 'btn' if can? :read, event
+      %td= link_to t(:edit), edit_event_url(event), class: 'btn' if can? :update, event
       %td= link_to t('events.index.trash'), trash_event_url(event),
-        class: 'btn btn-warning', confirm: t('events.index.trash_confirm')
+        class: 'btn btn-warning', confirm: t('events.index.trash_confirm') if can? :destroy, event
 
 
 - if can? :create, Event

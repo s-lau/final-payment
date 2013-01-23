@@ -12,14 +12,15 @@ class Ability
     can :leave, Event
 
     # events owner
-    can :modify, Event, owner: user # TODO and event not closed
-    can :manage, EventCharge, event: { owner: user } # TODO and event not closed
+    can :read,   Event, owner: user
+    can :modify, Event, owner: user, closed: false
+    can :manage, EventCharge, event: { owner: user, closed: false }
     can :manage, EventComment, event: { owner: user }
     
     # events participants
     can :read, Event, event_participations: { user_id: user.id }
-    can :create, EventCharge, event: { event_participations: { user_id: user.id } }
-    can :modify, EventCharge, user: user # TODO and event not closed
+    can :create, EventCharge, event: { event_participations: { user_id: user.id }, closed: false }
+    can :modify, EventCharge, user: user, event: { closed: false }
     can :create, EventComment, event: { event_participations: { user_id: user.id } }
   end
 end

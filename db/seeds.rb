@@ -6,14 +6,47 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Event.delete_all
-User.delete_all
+def create_random_charge event, user
+  user.joined_events.push event
+  stuff = %w{Beer Wine Meat Toys Plates CDs Juices Drinks Vegetables Fruits Crackers Chips Corn Beef Spices Sauces}
+  charge = EventCharge.new
+  charge.event = event
+  charge.user = user
+  charge.name = stuff.sample
+  charge.price_cents = rand(100..1500)
+  charge.save
+end
 
-(1..30).each do |n|
-  user = User.create email: "test#{n}@example.com", username: "test#{n}", :password => '123', :password_confirmation => '123'
-  user.confirm!
-  (1..5).each do |nr|
-    Event.create owner:user, name: "User #{n}'s Test-Event No. #{nr}'", description: "Description"
+def create_random_event owner
+  event_name = %w{Party Birthday Football-Game Olympics Grand-Finale Sleep-Over Pyjama-Party Concert}.sample
+  Event.create name: "#{owner.username.capitalize}'s #{event_name}", description: "That was some really awesome #{event_name}", owner: owner
+end
+
+if Rails.env == "development"
+  EventCharge.delete_all
+  EventComment.delete_all
+  Event.delete_all
+  User.delete_all
+
+  names = %w{Stefan Hendrik Arsenij John Jaime Steven Rick Paula Charlotte Mimi Homer Bart Lisa Marge Montgomery Rico Bertha Robert Bob Alice Eve Albert Rob}.shuffle
+
+  names.each_with_index do |name,i|
+    user = User.create email: "test#{i}@example.com", username: name.downcase, :password => '123', :password_confirmation => '123'
+    user.confirm!
+
+    if i%5 == 0
+      (1..rand(5)).each do
+        create_random_event user
+      end
+    end
+  end
+
+  Event.all.each do |event|
+    (0..rand(0..10)).each do
+      create_random_charge event, User.where('id != ?', event.owner.id).sample
+    end
   end
 end
+
+
 

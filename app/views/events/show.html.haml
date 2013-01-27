@@ -9,6 +9,9 @@
     - if @event.is_participant? current_user
       %li
         %a{:href => '#charges', :'data-toggle' => 'tab'}= EventCharge.model_name.human count: 0
+      - if @event_audits.present?
+        %li
+          %a{:href => '#changes', :'data-toggle' => 'tab'}= t '.changes'
       %li
         %a{:href => '#comments', :'data-toggle' => 'tab'}= EventComment.model_name.human count: 0
 
@@ -48,6 +51,11 @@
     - if @event.is_participant? current_user
       #charges.tab-pane
         = render 'event_charges/index'
+      - if @event_audits.present?
+        #changes.tab-pane
+          %ul.media-list
+            = render @event_audits[:new]
+            = render @event_audits[:old], item_disabled: true
 
       #comments.tab-pane
         %h2= EventComment.model_name.human count:0

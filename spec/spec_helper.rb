@@ -52,6 +52,10 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+    # XXX define default auditor
+    standard_auditor = FactoryGirl.build :confirmed_user
+    standard_auditor.id = 1
+    Auditor::User.current_user = standard_auditor
   end
 
   config.after(:each) do

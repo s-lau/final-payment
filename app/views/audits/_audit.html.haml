@@ -1,0 +1,19 @@
+%li.media{:class => disabled_if(defined?(item_disabled))}
+  - auditable_class = audit.auditable_type.constantize
+  .pull-left
+    = gravatar_image_tag(audit.user.email)
+    %br
+    = audit.user.username
+  - if auditable_class == EventParticipation
+    = t ".user.#{audit.action}", username: User.find(audit.attribute_snapshot[:user_id]).username
+  - else
+    .media-body
+      .media-heading
+        = auditable_class.model_name.human
+        - if auditable_class == EventCharge
+          = surround '"' do
+            = audit.attribute_snapshot[:name]
+      = t ".#{audit.action}"
+      - if audit.action == 'update'
+        = surround '(', ')' do
+          = audit.audited_changes.keys.map { |k| auditable_class.human_attribute_name k }.to_sentence

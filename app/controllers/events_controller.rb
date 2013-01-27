@@ -43,7 +43,11 @@ class EventsController < ApplicationController
   def show
     @event = EventDecorator.decorate(Event.find(params[:id]))
     @event_charges = EventChargeDecorator.decorate(@event.charges)
-
+    @event_audits = {
+      new: @event.owned_audits.where(["created_at >= ?", current_user.last_sign_in_at]),
+      old: @event.owned_audits.where(["created_at < ?", current_user.last_sign_in_at])
+    } if @event.owned_audits.present?
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }

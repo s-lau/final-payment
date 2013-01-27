@@ -1,7 +1,8 @@
 .page-header
   %h2= t '.headings.overview'
 
-%p= t '.total_events', :count => @events[:total_number]
+%p#statistics= t '.statistics', total_number_events: @events[:total_number_events], total_number_charges: @events[:total_number_charges], total_money_charges: (@events[:total_cents_charges]/100).round(0)
+
 
 %h2= t '.headings.organized'
 

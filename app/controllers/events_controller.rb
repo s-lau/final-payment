@@ -21,9 +21,12 @@ class EventsController < ApplicationController
 
   # GET /events
   # GET /events.json
+  # TODO Keep controllers thin?
   def index
     @events = {
-      total_number: Event.count,
+      total_number_events: Event.count,
+      total_number_charges: EventCharge.count,
+      total_cents_charges: EventCharge.total,
       own_events: EventDecorator.decorate(Event.active.where(owner: current_user)),
       joined_events: current_user.joined_events.active,
       trashed_events: current_user.events.trashed

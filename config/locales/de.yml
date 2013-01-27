@@ -51,11 +51,11 @@ de:
       event_comment:
         one: Kommentar
         other: Kommentare
-  
+
   language:
     de: deutsch
     en: englisch
-  
+
   events:
     index:
       trash: Wegwerfen
@@ -68,7 +68,7 @@ de:
         trashed: Papierkorb
       infos:
         trashed: In dieser Liste findest du deine weggeworfenen Ereignisse.
-      total_events: "Insgesamt %{count} Ereignisse in der Datenbank."
+      statistics: "Insgesamt sind %{total_number_events} Ereignisse in der Datenbank. Dabei wurden %{total_number_charges} Posten eingereicht mit einer Gesamtsumme von über %{total_money_charges}€!"
       new_event: Ereignis erstellen
     edit:
       heading: Ereignis bearbeiten

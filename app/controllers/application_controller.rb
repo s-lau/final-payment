@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :set_locale, :flash_to_gflash
+  before_filter :set_locale, :flash_to_gflash, :set_auditor
   
   
   protected
@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
       I18n.locale = session[:locale] || current_user.try(:locale) || preferred || compatible
       
       current_user.try :update_attribute, :locale, I18n.locale.to_s
+    end
+    
+    def set_auditor
+      Auditor::User.current_user = current_user
     end
     
     def after_sign_in_path_for(resource)

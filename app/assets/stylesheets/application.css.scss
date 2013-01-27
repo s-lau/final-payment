@@ -42,3 +42,7 @@ a.brand:hover {
 .btn-primary, .btn-danger {
   color: $bodyBackground !important;
 } 
+
+li.disabled {
+  @include opacity(50);
+}

@@ -27,6 +27,7 @@ de:
     attributes:
       event:
         owner: Organisator
+        closed: geschlossen
         total_costs: Gesamtkosten
         trashed_at: weggeworfen am
         user_balance: Dein Kontostand
@@ -56,6 +57,17 @@ de:
     de: deutsch
     en: englisch
   
+  audits:
+    audit:
+      user:
+        create: "%{username} ist beigetreten"
+        destroy: "%{username} hat das Ereignis verlassen"
+      by: "von %{username}"
+      destroy: gelöscht
+      create: erstellt
+      update: geändert
+      
+  
   events:
     index:
       trash: Wegwerfen
@@ -73,6 +85,7 @@ de:
     edit:
       heading: Ereignis bearbeiten
     show:
+      changes: Änderungen
       join_instructions_html: |
         Gib einfach die URL <b>%{join_url}</b> an Leute weiter die beitreten dürfen.<br/>
         Alternativ kann auch der %{qr_link} verwendet werden.

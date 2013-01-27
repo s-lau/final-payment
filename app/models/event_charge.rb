@@ -6,6 +6,8 @@ class EventCharge < ActiveRecord::Base
   monetize :price_cents
   mount_uploader :bill, BillUploader
   
+  audit :create, :update, :destroy, on: :event, except: [:created_at, :updated_at]
+  
   attr_accessible :name, :price, :bill, :remove_bill
   
   validates :name, presence: true

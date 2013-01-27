@@ -23,5 +23,8 @@ module Features
       end
       click_button 'Anmelden'
     end
+    def sign_out
+      click_link 'Abmelden'
+    end
   end
 end

@@ -15,6 +15,7 @@ gem 'cancan'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'http_accept_language'
+gem 'auditor'
 
 gem 'haml-rails'
 gem 'jquery-rails'
@@ -23,6 +24,7 @@ gem 'gritter'
 gem 'dynamic_form'
 gem 'colorbox-rails'
 gem 'rqrcode-rails3'
+gem 'gravatar_image_tag'
 
 group :test do
   gem 'rspec'

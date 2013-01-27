@@ -25,6 +25,7 @@ end
 if Rails.env == "development"
   EventCharge.delete_all
   EventComment.delete_all
+  EventParticipation.delete_all
   Event.delete_all
   User.delete_all
 
@@ -43,7 +44,15 @@ if Rails.env == "development"
 
   Event.all.each do |event|
     (0..rand(0..10)).each do
-      create_random_charge event, User.where('id != ?', event.owner.id).sample
+      random_user = User.where('id != ?', event.owner.id).sample
+
+      unless random_user.joined_events.include? event
+        event_participation = EventParticipation.new
+        event_participation.user= random_user
+        event_participation.event= event
+        event_participation.save
+      end
+      create_random_charge event, random_user
     end
   end
 end

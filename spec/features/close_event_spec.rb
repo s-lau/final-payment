@@ -3,8 +3,6 @@ require 'spec_helper'
 
 feature '4. C Titel: Abrechnung eines Ereignisses' do
    background do
-    # TODO use factory girl...
-
     user1 = FactoryGirl.create :confirmed_user, email: "test@example.com", password: "123"
     FactoryGirl.create_list :confirmed_user, 3
     @user2 = User.find(2)

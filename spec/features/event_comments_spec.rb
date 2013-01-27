@@ -3,7 +3,6 @@ require 'spec_helper'
 
 feature '16 A Titel: Benutzer kommentiert ein Ereignis' do
   background do
-    # TODO use factory girl...
     user = FactoryGirl.create :confirmed_user, email: 'user@example.com', password: '123456'
     @event = FactoryGirl.create :event, owner: user
   end

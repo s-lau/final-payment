@@ -2,8 +2,8 @@
   = f.error_messages
   - if @event.owner.present?
     = f.control_group Event.human_attribute_name(:owner) do
-      = @event.owner.email
+      #owner_email= @event.owner.email
   = f.text_field :name
   = f.text_area :description, rows: 5
   = f.actions do
-    = f.primary t 'save'
+    = f.primary t('save'), id: 'save_button'

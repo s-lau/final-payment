@@ -11,9 +11,10 @@ class Event < ActiveRecord::Base
   monetize :total_costs_cents
   monetize :costs_for_user_cents
   monetize :balance_for_user_cents
-
-  attr_accessible :description, :name, :owner, :closed, :trashed, :trashed_at
   
+  attr_accessible :description, :name, :owner, :closed
+  attr_protected :trashed, :trashed_at
+
   audit :update, except: [:created_at, :updated_at]
 
   scope :active, where(trashed: false)
@@ -24,11 +25,15 @@ class Event < ActiveRecord::Base
   end
 
   def trash
-    self.update_attributes trashed: true, trashed_at: Time.now
+    self.trashed = true
+    self.trashed_at = Time.now
+    self.save
   end
 
   def recover
-    self.update_attributes trashed: false, trashed_at: nil
+    self.trashed = false
+    self.trashed_at = nil
+    self.save
   end
 
   def total_costs_cents
@@ -50,15 +55,15 @@ class Event < ActiveRecord::Base
   def is_closable? user
     charges.length > 0 and is_owner? user and not closed
   end
-  
+
   def costs_for_user_cents(user = nil)
     return 0 unless user
     charges.where(user_id: user.id).sum :price_cents
   end
-  
+
   def balance_for_user_cents(user = nil)
     return 0 unless user
-    costs_for_user_cents(user) - total_costs_cents / (participants.count + 1) # plus owner 
+    costs_for_user_cents(user) - total_costs_cents / (participants.count + 1) # plus owner
   end
 
 end

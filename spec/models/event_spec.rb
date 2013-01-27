@@ -45,7 +45,7 @@ describe Event do
       Event.trashed.count.should eq 0
     end
   end
-  
+
   context 'prices' do
     #include MoneyRails::TestHelpers
     before :each do
@@ -72,8 +72,8 @@ describe Event do
     it 'should balance contributions (accounts relative balance)' do
       #monetize(:balance_for_user_cents).as(:balance_for_user).with_currency(:eur).should be_true
       @event.balance_for_user_cents(@owner).should eql 700
-      @event.balance_for_user_cents(@u1).should eql -300
-      @event.balance_for_user_cents(@u2).should eql -400
+      @event.balance_for_user_cents(@u1).should eql(-300)
+      @event.balance_for_user_cents(@u2).should eql(-400)
     end
   end
 end

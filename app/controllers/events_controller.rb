@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     authorize! :create, @event => EventComment
     event = Event.find params[:id]
     text = params[:comment_text]
-    
+
     comment = event.comments.build params[:event_comment] do |ec|
       ec.author = current_user
     end
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = {
-      total_number_of_events_in_database: Event.count,
+      total_number: Event.count,
       own_events: EventDecorator.decorate(Event.active.where(owner: current_user)),
       joined_events: current_user.joined_events.active,
       trashed_events: current_user.events.trashed
@@ -53,7 +53,7 @@ class EventsController < ApplicationController
       participation = @event.event_participations.build do |p|
         p.user = current_user
       end
-  
+
       if participation.save
         gflash :notice
       else
@@ -64,7 +64,7 @@ class EventsController < ApplicationController
     end
     redirect_to @event
   end
-  
+
   def join_qr_code
     @event = Event.find params[:id]
     authorize! :update, @event
@@ -80,7 +80,7 @@ class EventsController < ApplicationController
   # POST /events/1/leave
   def leave
     destroyed = EventParticipation.where(["user_id = ? AND event_id=?", current_user, @event]).destroy_all
-    if destroyed.length > 0 
+    if destroyed.length > 0
       gflash :notice
     else
       gflash :error
@@ -93,7 +93,7 @@ class EventsController < ApplicationController
     @event.update_attributes(:closed => true)
     if @event.save
       gflash :notice
-    else 
+    else
       gflash :error
     end
     EventMailer.event_closed_mail(current_user, @event).deliver

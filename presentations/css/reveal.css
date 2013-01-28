@@ -283,7 +283,7 @@ body {
 .reveal pre {
 	display: block;
 	position: relative;
-	width: 90%;
+	width: 95%;
 	margin: 15px auto;
 
 	text-align: left;
@@ -302,7 +302,7 @@ body {
 .reveal code {
 	font-family: monospace;
 	overflow: auto;
-	max-height: 400px;
+	/*max-height: 400px;*/
 }
 
 .reveal table th,
@@ -529,7 +529,7 @@ body {
 
 .reveal .slides {
 	position: absolute;
-	max-width: 900px;
+	/*max-width: 900px;*/
 	min-height: 600px;
 	width: 80%;
 	left: 50%;

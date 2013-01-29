@@ -254,13 +254,16 @@ end
   %p#statistics= <strong style="color:red;">t '.statistics'</strong>, total_number_events: @events[:total_number_events], total_number_charges: @events[:total_number_charges], total_money_charges: (@events[:total_cents_charges]/100).round(0)
             </code>
           </pre>
-          Dazu die entsprechenden Einträge aus <code>config/locale/[en|de].yml</code>
+          <div class="fragment">
+            Dazu die entsprechenden Einträge aus <code>config/locale/[en|de].yml</code>
+            <pre><code>
+                  en.yml: statistics: "There are %{total_number_events} events in the database. We're currently processing %{total_number_charges} charges with a total amount of over %{total_money_charges}€!"
 
-          <pre><code>
-                en.yml: statistics: "There are %{total_number_events} events in the database. We're currently processing %{total_number_charges} charges with a total amount of over %{total_money_charges}€!"
-
-                de.yml: statistics: "Insgesamt sind %{total_number_events} Ereignisse in der Datenbank. Dabei wurden %{total_number_charges} Posten eingereicht mit einer Gesamtsumme von über %{total_money_charges}€!"
-          </code></pre>
+                  de.yml: statistics: "Insgesamt sind %{total_number_events} Ereignisse in der Datenbank. Dabei wurden %{total_number_charges} Posten eingereicht mit einer Gesamtsumme von über %{total_money_charges}€!"
+            </code></pre>
+        </div>
+          <br />
+          <h3 class="fragment">Grundsätzlich super einfach! Eventuell viel Aufwand bei vielen Übersetzungen.</h3>
         </section>
 
         <!-- Hendrik -->

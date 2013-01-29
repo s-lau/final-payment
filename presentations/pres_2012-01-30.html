@@ -95,6 +95,60 @@
 </code></pre>
           </section>
         </section>
+<section>
+        <section>
+          <h2>Architekturmuster</h2>
+	 <ul> 
+	   <li>MVC:</li>
+	  <ul>
+	    <li>Requests/Aktionen werden an Controller-Klassen geroutet</li>
+	    <li>Controller ändern Model</li>
+	    <li>Model erneuert View</li>
+	  </ul>
+	 </ul>	  
+        </section>
+
+	<section>
+            <pre><code class="ruby">
+  # event_charges_controller.rb
+  # POST /event_charges
+  def create
+    @event_charge = @event.charges.new(params[:event_charge])
+    @event_charge.user = current_user
+    ...
+  end
+	    </code></pre>
+
+            <pre><code class="ruby">
+  #event.rb
+  def costs_for_user_cents(user = nil)
+    return 0 unless user
+    charges.where(user_id: user.id).sum :price_cents
+  end
+       </code></pre>
+            <pre><code class="haml">
+      %h3= Event.human_attribute_name :user_balance
+      %p= @event.balance_for_user current_user
+            </code></pre>
+	</section>
+</section>
+
+        <section>
+          <h2>Erweiterbarkeit</h2>	    
+	  <pre><code class="ruby">
+#Gemfile
+gem 'money-rails'
+	  </code></pre>
+	  <pre>
+	  <code class="ruby">
+class EventDecorator < ApplicationDecorator
+  decorates :event
+  <strong style="color:red;">monetize</strong> :total_costs, :balance_for_user, :costs_for_user
+end
+          </code></pre>
+    
+        </section>
+
 
         <section>
           <h2>Formularunterstützung</h2>
@@ -234,16 +288,78 @@ end
           </section>
         </section>
 
+        <!-- Hendrik -->
         <section>
-          <h2>Internationalisierung</h2>
+          <h2>Lokalisierung/Internationalisierung</h2>
+            <ul>
+              <li>Webanwendung hat eine <em>current locale</em>: <code>I18N.locale</code></li>
+              <li>Übersetzung von Strings in Key-Value-Dateien in <code>config/locale/</code></li>
+              <li>Wir unterstützen z.Z. Deutsch und Englisch, aber nicht völlig deckungsgleich</li>
+              <div class="fragment"><li class="fragment highlight-red">Problem: Wie kann ich feststellen, ob ich alle Strings in allen Sprachen vorliegen habe?</li></div>
+            </ul>
         </section>
 
+        <section>
+          <h2>Codebeispiel</h2>
+
+          Aus einem HAML-Template in unserem <em>Events</em>-System:
+          <pre>
+            <code>
+  %p#statistics= <strong style="color:red;">t '.statistics'</strong>, total_number_events: @events[:total_number_events], total_number_charges: @events[:total_number_charges], total_money_charges: (@events[:total_cents_charges]/100).round(0)
+            </code>
+          </pre>
+          <div class="fragment">
+            Dazu die entsprechenden Einträge aus <code>config/locale/[en|de].yml</code>
+            <pre><code>
+                  en.yml: statistics: "There are %{total_number_events} events in the database. We're currently processing %{total_number_charges} charges with a total amount of over %{total_money_charges}€!"
+
+                  de.yml: statistics: "Insgesamt sind %{total_number_events} Ereignisse in der Datenbank. Dabei wurden %{total_number_charges} Posten eingereicht mit einer Gesamtsumme von über %{total_money_charges}€!"
+            </code></pre>
+        </div>
+          <br />
+          <h3 class="fragment">Grundsätzlich super einfach! Eventuell viel Aufwand bei vielen Übersetzungen.</h3>
+          <h5 class="fragment">... wir pflegen aktuell etwa 80 Übersetzungen im Deutschen</h5>
+        </section>
+
+        <!-- Hendrik -->
         <section>
           <h2>Routing</h2>
+          <pre>
+          <code class="ruby">
+  resources :events do
+    member do
+      post 'comment'
+      get  'j/:token', action: :join, as: :join
+      post 'leave'
+      get  'join_qr_code'
+      post 'close'
+      get 'trash'
+      get 'recover'
+    end
+    resources :event_charges, as: :charges, except: [:show, :new]
+  end
+
+  devise_for :users
+
+  get "home/index"
+  root :to => 'events#index'
+          </code>
+          </pre>
+          <strong class="fragment">Convention over Configuration at its Best</strong>
         </section>
 
+        <!-- Hendrik -->
         <section>
           <h2>Bootstrapping</h2>
+          <ul>
+            <li><code>git init</code> zu Beginn des Projekts erstellt die Ordnerstrukturen</li>
+            <li>Anschließende Auswahl der zu verwendenden Komponenten durch Installation der benötigten <strong>gem</strong>s</li>
+            <li>Allerdings: Wir haben kein großes Datenbank-Setup</li>
+          </ul>
+          <br />
+          <br />
+          <h3 class="fragment">Einfach, Robust, Stressfrei</h3>
+          <h5 class="fragment">... wenn man die nötigen gems kennt</h5>
         </section>
 
         <section>
@@ -254,23 +370,6 @@ end
           <h2>Sicherheit</h2>
         </section>
 
-        <section>
-          <h2>Erweiterbarkeit</h2>
-	  
-	    
-	  <pre><code class="ruby">
-#Gemfile
-gem 'money-rails'
-	  </code></pre>
-	  <pre>
-	  <code class="ruby">
-class EventDecorator < ApplicationDecorator
-  decorates :event
-  monetize :total_costs, :balance_for_user, :costs_for_user
-end
-          </code></pre>
-    
-        </section>
 
         <section>
           <h2>Konfiguration</h2>
@@ -284,47 +383,18 @@ end
         </section>
 
         <section>
-          <h2>Architekturmuster</h2>
-	  MVC:
-	  <ul>
-	    <li>Requests/Aktionen werden an Controller-Klassen geroutet</li>
-	    <li>Controller ändern Model</li>
-	    <li>Model erneuert View</li>
-	  </ul>	  
-        </section>
-	<section>
-            <pre><code class="ruby">
-  # event_charges_controller.rb
-  # POST /event_charges
-  def create
-    @event_charge = @event.charges.new(params[:event_charge])
-    @event_charge.user = current_user
-    ...
-  end
-	    </code></pre>
-
-            <pre><code class="ruby">
-  #event.rb
-  def costs_for_user_cents(user = nil)
-    return 0 unless user
-    charges.where(user_id: user.id).sum :price_cents
-  end
-       </code></pre>
-            <pre><code class="haml">
-      %h3= Event.human_attribute_name :user_balance
-      %p= @event.balance_for_user current_user
-            </code></pre>
-	</section>
-        <section>
           <h2>Community & Documentation</h2>
 	  <ul>
             <li>StackOverflow.com</li>
             <li>api.rubyonrails.org</li>
           </ul>
         </section>
-	
 	<section>
-          <h2>Fazit</h2>
+	  <section>
+	    <h2>Fazit</h2>
+	  </section>
+	<section>
+          <h2>Aus Anfängersicht</h2>
 	  <ul>
             <li>Convention over Configuration</li>
 	    <ul>
@@ -333,7 +403,7 @@ end
 	    </ul>
           </ul>
         </section>
-
+	</section>
 
       </div>
 

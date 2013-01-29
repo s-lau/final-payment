@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  include AASM
 
   belongs_to :owner, foreign_key: "owner", class_name: "User"
 
@@ -12,10 +13,34 @@ class Event < ActiveRecord::Base
   monetize :costs_for_user_cents
   monetize :balance_for_user_cents
 
-  attr_accessible :description, :name, :owner, :closed, :trashed, :trashed_at, :status
+  attr_accessible :description, :name, :owner, :closed, :trashed, :trashed_at
 
   scope :active, where(trashed: false)
   scope :trashed, where(trashed: true)
+
+  
+
+  aasm :column => 'state' do
+    state :billing, :initial => true
+    state :closed
+    state :trashed 
+
+    event :close, :after => :notify_closed do 
+      transitions :from => :billing, :to => :closed
+    end
+
+    event :trash, :before => ->{previous_state = state} do
+      transitions :from => [:closed, :billing], :to => :trashed      
+    end
+  end
+
+  def acquit user
+    self.event_participations.where(user_id: user.id).first.update_attribute(:acquited, true)
+  end
+
+  def notify_closed
+    notify :close 
+  end
 
   def trash
     self.update_attributes trashed: true, trashed_at: Time.now

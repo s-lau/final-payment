@@ -23,6 +23,7 @@ gem 'gritter'
 gem 'dynamic_form'
 gem 'colorbox-rails'
 gem 'rqrcode-rails3'
+gem 'aasm'
 
 group :test do
   gem 'rspec'

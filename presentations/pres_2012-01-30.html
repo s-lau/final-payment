@@ -368,8 +368,18 @@ end
         </section>
         //-->
 
+        <!-- Hendrik -->
         <section>
           <h2>Sicherheit</h2>
+          <ul>
+            <li><code>csrf_meta_tags</code> in <em>Views</em> generiert CSRF-Tags</li>
+            <li>Allerdings bleibt mehr einem selbst überlassen als bisher angenommen, typische Fallstricke:</li>
+            <ul>
+              <li><code>attr_accessible</code> erlaubt Massenzuweisungen</li>
+              <li>Zu viel Vertrauen in externe <em>gem</em>s</li>
+            </ul>
+          </ul>
+          <h3 class="fragment" style="margin-top: 50px; color: red;">Shocking: In den letzten 4 Wochen 3 Zero-Day-Exploits für Rails aufgetaucht!</h3>
         </section>
 
 

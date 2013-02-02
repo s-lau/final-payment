@@ -47,7 +47,7 @@ class EventsController < ApplicationController
       new: @event.owned_audits.where(["created_at >= ?", current_user.last_sign_in_at]),
       old: @event.owned_audits.where(["created_at < ?", current_user.last_sign_in_at])
     } if @event.owned_audits.present?
-    
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -97,27 +97,22 @@ class EventsController < ApplicationController
 
   #POST /events/1/close
   def close
-    @event.update_attributes(:closed => true)
-    if @event.save
+    if @event.owner == current_user and @event.close
       gflash :notice
+      EventMailer.event_closed_mail(current_user, @event).deliver
     else
       gflash :error
     end
-    EventMailer.event_closed_mail(current_user, @event).deliver
     redirect_to @event
   end
 
   def compensate
-    if @event.owner ==  current_user
-      @event.compensated = true
-      @event.compensated_at = Time.now
-      @event.save
+    if @event.owner ==  current_user and @event.compensate
       gflash :notice
-      redirect_to @event
     else
       gflash :error
-      redirect_to @event
     end
+      redirect_to @event
   end
 
   # GET /events/new

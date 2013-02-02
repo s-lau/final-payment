@@ -5,6 +5,9 @@ feature '3. A Titel: Entfernen eines Ereignis' do
   background do
     user = FactoryGirl.create :confirmed_user, email: 'user@example.com', password: '123456'
     @event = FactoryGirl.create :event, owner: user
+    @event.close
+    @event.compensate
+
   end
 
   scenario 'trash event' do

@@ -38,6 +38,7 @@ class Event < ActiveRecord::Base
 
   def close
     self.closed = true
+    self.closed_at = Time.now
     self.save
   end
 

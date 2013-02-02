@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130122953) do
+ActiveRecord::Schema.define(:version => 20130202164121) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id",                   :null => false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20130130122953) do
     t.datetime "trashed_at"
     t.boolean  "compensated",    :default => false
     t.datetime "compensated_at"
+    t.datetime "closed_at"
   end
 
   create_table "users", :force => true do |t|

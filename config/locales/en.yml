@@ -29,15 +29,22 @@ en:
     en: english
 
   events:
+    stati:
+      open: Open
+      compensated: Compensated
+      in_compensation: Being Compensated
+      trashed: Trashed
+
     trash: Trash it!
     trash_confirm: Do you really want to throw this event away?
     mark_as_expenses_compensated: Everyone payed their shares!
+    in_compensation: Compensation
     index:
+      number_charges: '#Charges'
       headings:
         overview: Events overview
         organized: Events you organized
         contributed: Events you contributed to
-        trashed: Trashed Events
       infos:
         trashed: This is a list of events that have been organized by you, but are trashed right now.
       statistics: "There are %{total_number_events} events in the database. We're currently processing %{total_number_charges} charges with a total amount of over %{total_money_charges}€!"
@@ -78,6 +85,8 @@ en:
     events:
       recover:
         notice: Event recycled!
+      compensate:
+        notice: Event marked as compensated
       trash:
         notice: Event trashed!
 

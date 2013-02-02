@@ -30,6 +30,20 @@ class Event < ActiveRecord::Base
     self.save
   end
 
+  def charges?
+    charges.count > 0
+  end
+
+  def status
+    if self.trashed? then return :trashed end
+    if self.closed? then
+      if self.compensated? then return :compensated
+      else return :in_compensation
+      end
+    end
+    :open
+  end
+
   def recover
     self.trashed = false
     self.trashed_at = nil

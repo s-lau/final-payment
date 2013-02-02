@@ -68,12 +68,14 @@ de:
       update: geändert
 
   mark_as_expenses_compensated: Alle haben ihre Schulden bezahlt!
-  not_yet_compensated: Organisator wartet auf Ausgleich seiner Ausgaben
-  open: offen
-  compensated: ausgeglichen
-
   events:
+    stati:
+      open: Offen
+      compensated: Abgeschlossen
+      in_compensation: In Abrechnung
+      trashed: Im Papierkorb
     index:
+      number_charges: Postenanzahl
       trash: Wegwerfen
       trash_confirm: Wollen Sie dieses Ereignis wirklich in den Papierkorb verschieben?
       recover: Wiederherstellen
@@ -81,7 +83,6 @@ de:
         overview: Ereignisübersicht
         organized: Deine Ereignisse
         contributed: Ergnisse an denen du teilgenommen hast
-        trashed: Papierkorb
       infos:
         trashed: In dieser Liste findest du deine weggeworfenen Ereignisse.
       statistics: "Insgesamt sind %{total_number_events} Ereignisse in der Datenbank. Dabei wurden %{total_number_charges} Posten eingereicht mit einer Gesamtsumme von über %{total_money_charges}€!"
@@ -133,6 +134,8 @@ de:
           current_password: "(Änderungen müssen mit dem aktuellen Passwort bestätigt werden)"
   gflash:
     events:
+      compensate:
+        notice: Ereignis als abgeglichen markiert
       recover:
         notice: Ereignis wiederhergestelt!
       trash:

@@ -11,6 +11,8 @@
     %th= Event.human_attribute_name :name
     %th= Event.human_attribute_name :description
     %th= Event.human_attribute_name :total_costs
+    %th= t '.number_charges'
+    %th= t 'status'
     %th
     %th
     %th
@@ -22,10 +24,12 @@
       %td= event.name
       %td= event.description
       %td= event.total_costs
+      %td= event.charges.count
+      %td= t "events.stati.#{event.status}"
       %td= link_to t(:show), event, class: 'btn' if can? :read, event
       %td= link_to t(:edit), edit_event_url(event), class: 'btn', id: "link_edit_event_#{event.id}" if can? :update, event
-      %td= link_to t(:close), event, class: 'btn' if can? :close, event
-      %td= link_to t('events.index.trash'), trash_event_url(event),
+      %td= link_to t(:close_event), event, class: 'btn' if can? :close, event
+      %td= link_to t('.trash'), trash_event_url(event),
         class: 'btn btn-warning', confirm: t('events.index.trash_confirm') if can? :trash, event
 
 

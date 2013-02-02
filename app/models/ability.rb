@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    alias_action :close, :read, :update, :destroy, :to => :modify
+    alias_action :read, :update, :destroy, :to => :modify
 
     # all
     can :create, Event
@@ -14,8 +14,9 @@ class Ability
     # events owner
     can :read,   Event, owner: user, trashed: false
     can :modify, Event, owner: user, closed: false
-    can :trash, Event, owner: user, closed: true
+    can :close, Event, owner: user, charges?: true, closed: false
     can :compensate, Event, owner: user, closed: true, trashed: false, compensated: false
+    can :trash, Event, owner: user, closed: true, compensated: true, trashed: false
 
     can :manage, EventCharge, event: { owner: user, closed: false }
     can :manage, EventComment, event: { owner: user }

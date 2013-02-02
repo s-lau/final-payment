@@ -67,6 +67,11 @@ de:
       create: erstellt
       update: geändert
 
+  mark_as_expenses_compensated: Alle haben ihre Schulden bezahlt!
+  not_yet_compensated: Organisator wartet auf Ausgleich seiner Ausgaben
+  open: offen
+  compensated: ausgeglichen
+
   events:
     index:
       trash: Wegwerfen

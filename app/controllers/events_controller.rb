@@ -107,6 +107,19 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  def compensate
+    if @event.owner ==  current_user
+      @event.compensated = true
+      @event.compensated_at = Time.now
+      @event.save
+      gflash :notice
+      redirect_to @event
+    else
+      gflash :error
+      redirect_to @event
+    end
+  end
+
   # GET /events/new
   # GET /events/new.json
   def new

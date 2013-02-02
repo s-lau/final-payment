@@ -23,14 +23,15 @@ en:
         owner: Organizer
         user_balance: Your balance
         user_costs: Your charges
-  
+
   language:
     de: german
     en: english
-  
+
   events:
     trash: Trash it!
     trash_confirm: Do you really want to throw this event away?
+    mark_as_expenses_compensated: Everyone payed their shares!
     index:
       headings:
         overview: Events overview

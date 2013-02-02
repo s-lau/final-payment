@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   monetize :balance_for_user_cents
   
   attr_accessible :description, :name, :owner, :closed
-  attr_protected :trashed, :trashed_at
+  attr_protected :trashed, :trashed_at, :compensated, :compensated_at
 
   audit :update, except: [:created_at, :updated_at]
 

@@ -11,15 +11,15 @@ class Event < ActiveRecord::Base
   monetize :total_costs_cents
   monetize :costs_for_user_cents
   monetize :balance_for_user_cents
-  
+
   attr_accessible :description, :name, :owner, :closed
-  attr_protected :trashed, :trashed_at
+  attr_protected :trashed, :trashed_at, :compensated, :compensated_at
 
   audit :update, except: [:created_at, :updated_at]
 
   scope :active, where(trashed: false)
   scope :trashed, where(trashed: true)
-  
+
   def owned_audits
     Audit.where(owner_type: 'Event', owner_id: id).reorder 'created_at DESC'
   end
@@ -28,6 +28,32 @@ class Event < ActiveRecord::Base
     self.trashed = true
     self.trashed_at = Time.now
     self.save
+  end
+
+  def compensate
+    self.compensated = true
+    self.compensated_at = Time.now
+    self.save
+  end
+
+  def close
+    self.closed = true
+    self.closed_at = Time.now
+    self.save
+  end
+
+  def charges?
+    charges.count > 0
+  end
+
+  def status
+    if self.trashed? then return :trashed end
+    if self.closed? then
+      if self.compensated? then return :compensated
+      else return :in_compensation
+      end
+    end
+    :open
   end
 
   def recover

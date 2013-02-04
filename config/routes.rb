@@ -7,6 +7,7 @@ Chargeback::Application.routes.draw do
       post 'leave'
       get  'join_qr_code'
       post 'close'
+      post 'compensate'
       get 'trash'
       get 'recover'
     end

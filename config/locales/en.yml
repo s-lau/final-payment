@@ -43,6 +43,7 @@ en:
         password: Password
         password_confirmation: Confirm password
         current_password: Current password
+        description: Payment information (to receive money)
     models:
       event:
         one: Event
@@ -112,6 +113,7 @@ en:
   event_comments:
     new: New Comment
   users:
+    no_description: No payment information present.
     sign_up: Sign up
     sign_in: Sign in
     sign_out: Sign out

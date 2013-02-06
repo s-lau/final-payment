@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource except: [:comment, :show, :join_qr_code, :trash, :recover]
+  load_and_authorize_resource except: [:comment, :show, :join_qr_code, :trash, :recover, :payment_info]
 
   def comment
     authorize! :create, @event => EventComment
@@ -41,7 +41,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = EventDecorator.decorate(Event.find(params[:id]))
+    @event = EventDecorator.decorate(Event.find params[:id])
     @event_charges = EventChargeDecorator.decorate(@event.charges)
     @event_audits = {
       new: @event.owned_audits.where(["created_at >= ?", current_user.last_sign_in_at]),
@@ -126,6 +126,7 @@ class EventsController < ApplicationController
     end
     redirect_to @event
   end
+  
   def compensate_all
     if @event.owner ==  current_user and @event.compensate_all
       gflash :notice
@@ -191,8 +192,6 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
-
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html do
@@ -210,12 +209,21 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
 
     respond_to do |format|
       format.html { redirect_to events_url }
       format.json { head :no_content }
+    end
+  end
+  
+  # GET /events/:id/payment_info/:user_id
+  def payment_info
+    event = Event.find params[:id]
+    user = User.find params[:user_id]
+    if current_user == event.owner || user == event.owner
+      info = user.description.presence || t('users.no_description')
+      render text: info, layout: false
     end
   end
 end

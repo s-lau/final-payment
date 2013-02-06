@@ -43,6 +43,7 @@ de:
         password: Passwort
         password_confirmation: Passwort bestätigen
         current_password: Aktuelles Passwort
+        description: Zahlungsinformationen (zum Empfangen von Geld)
     models:
       event:
         one: Ereignis
@@ -113,6 +114,7 @@ de:
     new: Neuer Kommentar
 
   users:
+    no_description: Keine Zahlungsinformationen hinterlegt.
     sign_up: Registrieren
     sign_in: Anmelden
     sign_out: Abmelden
@@ -143,7 +145,7 @@ de:
   gflash:
     events:
       recover:
-        notice: Ereignis wiederhergestelt!
+        notice: Ereignis wiederhergestellt!
       compensate:
         notice: Ereignis als abgeglichen markiert
       trash:

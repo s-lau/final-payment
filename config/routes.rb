@@ -12,6 +12,7 @@ Chargeback::Application.routes.draw do
       post 'compensate/:user', action: :compensate
       get 'trash'
       get 'recover'
+      get 'payment_info/:user_id', action: :payment_info, as: :payment_info
     end
     resources :event_charges, as: :charges, except: [:show, :new]
   end

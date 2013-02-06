@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 def create_random_charge event, user
-  user.joined_events.push event
   stuff = %w{Beer Wine Meat Toys Plates CDs Juices Drinks Vegetables Fruits Crackers Chips Corn Beef Spices Sauces}
   charge = EventCharge.new
   charge.event = event
@@ -45,12 +44,10 @@ if Rails.env == "development"
   Event.all.each do |event|
     (0..rand(0..10)).each do
       random_user = User.where('id != ?', event.owner.id).sample
-
-      unless random_user.joined_events.include? event
-        event_participation = EventParticipation.new
-        event_participation.user= random_user
-        event_participation.event= event
-        event_participation.save
+      Auditor::User.current_user = random_user
+      
+      unless event.participants.include? random_user
+        event.participants << random_user
       end
       create_random_charge event, random_user
     end

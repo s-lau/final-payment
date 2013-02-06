@@ -12,6 +12,8 @@ en:
   destroy: Destroy
   close_event: Bill event
   none: none
+  yes: Yes
+  no: No
 
   activerecord:
     models:
@@ -52,7 +54,7 @@ en:
       new_event: New Event
     edit:
       heading: Editing event
-    show:
+    cost_overview:
       join_instructions_html: |
         Send the URL <b>%{join_url}</b> to friends who should participate.<br/>
         You can also use this %{qr_link}.

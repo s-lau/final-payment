@@ -16,7 +16,7 @@ de:
     #     notice: "This is a notification"
     #     error: "Something went wrong"
     #
-    # Inside controller: 
+    # Inside controller:
     # gflash :notice, :error
     #
     events:
@@ -28,11 +28,12 @@ de:
       join:
         notice: Sie sind dem Ereigniss beigetreten.
         error: Es ist ein Fehler aufgetaucht beim Beitreten des Ereignisses.
+        already_joined: Sie sind dem Ereignis schon beigetreten
       leave:
         notice: Sie haben das Ereignis verlassen.
         error: Es ist ein Fehler aufgetaucht beim Verlassen des Ereignisses.
       close:
-        notice: Alle Teilnehmer wurden über die Abrechnung per E-Mail benachrichtigt 	
+        notice: Alle Teilnehmer wurden über die Abrechnung per E-Mail benachrichtigt
         error: Es ist ein Fehler beim Abrechnen des Ereignisses aufgetreten
     event_charges:
       create:

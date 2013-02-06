@@ -16,7 +16,7 @@ en:
     #     notice: "This is a notification"
     #     error: "Something went wrong"
     #
-    # Inside controller: 
+    # Inside controller:
     # gflash :notice, :error
     #
     events:
@@ -28,12 +28,13 @@ en:
       join:
         notice: You have successfully joind this event
         error: Could not while leaving the event
+        already_joined: You already joined the event
       leave:
         notice: You have successfully left this event
         error: Could not leave event
       close:
         notice: An email notifications has been sent to all participants
         error: An error occurred while billing the event
-    
+
     event_charges:
       create: Charge was successfully created.

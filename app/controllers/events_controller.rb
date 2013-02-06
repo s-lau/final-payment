@@ -56,6 +56,11 @@ class EventsController < ApplicationController
 
   # GET /events/1/j/:token
   def join
+    if current_user.participates? @event
+      gflash :already_joined
+      redirect_to @event
+      return
+    end
     if @event.join_token == params[:token]
       participation = @event.event_participations.build do |p|
         p.user = current_user

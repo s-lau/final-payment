@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   has_many :event_participations
   has_many :joined_events, through: :event_participations, source: :event
   has_many :charges, class_name: 'EventCharge'
+
+  def participates? event
+    event.owner == self or self.joined_events.include? event
+  end
 end

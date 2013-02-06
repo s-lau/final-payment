@@ -38,7 +38,7 @@
       .btn-group
         - if can? :close, @event
           = link_to t('close_event'), close_event_path, class: 'btn btn-primary', method: 'post'
-        - if can? :compensate, @event
+        - if can? :compensate_all, @event
           = link_to t('mark_as_expenses_compensated'), compensate_all_event_path, class: 'btn btn-success', method: 'post', id: 'markascompensated_button'
         - if can? :trash, @event
           = link_to t('events.index.trash'), trash_event_path, class: 'btn btn-warning'

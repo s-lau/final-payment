@@ -32,11 +32,10 @@ class Event < ActiveRecord::Base
   end
 
   def compensate_all
-    if mark_all_shares_compensated
-      self.compensated = true
-      self.compensated_at = Time.now
-      self.save
-    end
+    mark_all_shares_compensated
+    self.compensated = true
+    self.compensated_at = Time.now
+    self.save
   end
 
   def compensate user
@@ -107,12 +106,12 @@ class Event < ActiveRecord::Base
     self.participants.each do |participant|
       mark_share_compensated participant
     end
-      mark_share_compensated self.owner
+    mark_share_compensated self.owner
   end
 
   def mark_share_compensated participant
     if EventCompensation.where(user_id: participant, event_id: self).count == 0
-        EventCompensation.create user: participant, event: self
+      EventCompensation.create user: participant, event: self
     end
   end
 

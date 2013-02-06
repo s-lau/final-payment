@@ -97,6 +97,8 @@ de:
       join_instructions_html: |
         Gib einfach die URL <b>%{join_url}</b> an Leute weiter die beitreten dürfen.<br/>
         Alternativ kann auch der %{qr_link} verwendet werden.
+      you_should_receive: "Du erhältst %{money}."
+      you_have_to_pay: "Du musst %{money} zahlen."
 
   event_charges:
     index:

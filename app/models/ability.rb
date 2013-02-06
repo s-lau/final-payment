@@ -10,6 +10,7 @@ class Ability
     can :create, Event
     can :join, Event
     can :leave, Event
+    can :compensate, Event
     # can :compensate, Event, closed: true, trashed: false, compensated: false
 
     # events owner

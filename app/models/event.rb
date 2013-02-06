@@ -30,10 +30,16 @@ class Event < ActiveRecord::Base
     self.save
   end
 
-  def compensate
-    self.compensated = true
-    self.compensated_at = Time.now
-    self.save
+  def compensate_all
+    if mark_all_shares_compensated
+      self.compensated = true
+      self.compensated_at = Time.now
+      self.save
+    end
+  end
+
+  def compensate user
+    mark_share_compensated user
   end
 
   def close
@@ -90,6 +96,20 @@ class Event < ActiveRecord::Base
   def balance_for_user_cents(user = nil)
     return 0 unless user
     costs_for_user_cents(user) - total_costs_cents / (participants.count + 1) # plus owner
+  end
+
+  private
+  def mark_all_shares_compensated
+    self.participants.each do |participant|
+      mark_share_compensated participant
+    end
+      mark_share_compensated self.owner
+  end
+
+  def mark_share_compensated participant
+    if EventCompensation.where(user_id: participant, event_id: self).count == 0
+        EventCompensation.create user: participant, event: self
+    end
   end
 
 end

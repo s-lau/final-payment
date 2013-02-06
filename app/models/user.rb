@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   def participates? event
     event.owner == self or self.joined_events.include? event
   end
+
+  def payed_fair_share? event
+    EventCompensation.done? event, self
+  end
 end

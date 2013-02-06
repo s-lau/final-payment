@@ -103,6 +103,7 @@ class EventsController < ApplicationController
   #POST /events/1/close
   def close
     if @event.owner == current_user and @event.close
+      @event.compensate current_user
       gflash :notice
       EventMailer.event_closed_mail(current_user, @event).deliver
     else
@@ -112,7 +113,21 @@ class EventsController < ApplicationController
   end
 
   def compensate
-    if @event.owner ==  current_user and @event.compensate
+    if current_user == @event.owner
+      user = User.find(params[:user])
+      @event.compensate user
+      gflash :notice
+    else
+      if @event.participants.include? current_user
+        @event.compensate current_user
+      else
+        gflash :error
+      end
+    end
+    redirect_to @event
+  end
+  def compensate_all
+    if @event.owner ==  current_user and @event.compensate_all
       gflash :notice
     else
       gflash :error

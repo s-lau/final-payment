@@ -15,6 +15,8 @@ de:
   overview: Übersicht
   close_event: Abrechnen
   none: Keine
+  yes: Ja
+  no: Nein
 
   attributes:
     email: E-Mail
@@ -91,6 +93,7 @@ de:
       heading: Ereignis bearbeiten
     show:
       changes: Änderungen
+    cost_overview:
       join_instructions_html: |
         Gib einfach die URL <b>%{join_url}</b> an Leute weiter die beitreten dürfen.<br/>
         Alternativ kann auch der %{qr_link} verwendet werden.

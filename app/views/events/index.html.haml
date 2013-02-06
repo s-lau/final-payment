@@ -43,11 +43,15 @@
     %th= Event.human_attribute_name :name
     %th= Event.human_attribute_name :description
     %th= Event.human_attribute_name :total_costs
+    %th Status
     %th
-    %th
-    %th
-
-  = render @events[:joined_events]
+  - @events[:joined_events].each do |event|
+    %tr
+      %td= event.name
+      %td= event.description
+      %td= event.total_costs
+      %td= t "events.stati.#{event.status}"
+      %td= link_to t(:show), event, class: 'btn' if can? :read, event
 
 %h2= t '.headings.trashed'
 = t '.infos.trashed'

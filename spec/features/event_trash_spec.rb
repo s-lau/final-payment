@@ -6,7 +6,7 @@ feature '3. A Titel: Entfernen eines Ereignis' do
     user = FactoryGirl.create :confirmed_user, email: 'user@example.com', password: '123456'
     @event = FactoryGirl.create :event, owner: user
     @event.close
-    @event.compensate
+    @event.compensate_all
 
   end
 

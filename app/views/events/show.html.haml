@@ -25,7 +25,10 @@
       %p= @event.description
 
       %h3= Event.human_attribute_name :owner
-      %p= @event.owner.username
+      %p
+        = @event.owner.username
+        - if @event.is_participant? current_user
+          = render 'users/message', user: @event.owner
       
       - if @event.is_participant? current_user
         %h3= Event.human_attribute_name :total_costs

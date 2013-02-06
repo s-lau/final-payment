@@ -17,6 +17,8 @@ de:
   none: Keine
   yes: Ja
   no: Nein
+  send: Senden
+  close: Schliessen
 
   attributes:
     email: E-Mail
@@ -103,7 +105,17 @@ de:
         Alternativ kann auch der %{qr_link} verwendet werden.
       you_should_receive: "Du erhältst %{money}."
       you_have_to_pay: "Du musst %{money} zahlen."
-
+    compensation_status:
+      send_message: "Nachricht an %{username}"
+  
+  event_mailer:
+    user_message:
+      subject: "Nachricht von %{username}"
+      body: |
+        Bezüglich des Ereignis "%{event}" schreibt dir "%{username}" folgendes:
+        
+        %{message}
+  
   event_charges:
     index:
       new_event_charge: Neuer Kostenpunkt

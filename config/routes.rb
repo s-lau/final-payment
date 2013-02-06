@@ -13,6 +13,7 @@ Chargeback::Application.routes.draw do
       get 'trash'
       get 'recover'
       get 'payment_info/:user_id', action: :payment_info, as: :payment_info
+      post 'message/:user_id', action: :message, as: :message
     end
     resources :event_charges, as: :charges, except: [:show, :new]
   end

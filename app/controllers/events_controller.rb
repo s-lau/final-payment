@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource except: [:comment, :show, :join_qr_code, :trash, :recover, :payment_info]
+  load_and_authorize_resource except: [:comment, :show, :join_qr_code, :trash, :recover, :payment_info, :message]
 
   def comment
     authorize! :create, @event => EventComment
@@ -225,5 +225,12 @@ class EventsController < ApplicationController
       info = user.description.presence || t('users.no_description')
       render text: info, layout: false
     end
+  end
+  
+  # POST /events/:id/message/:user_id
+  def message
+    event = Event.find params[:id]
+    @to = User.find params[:user_id]
+    EventMailer.user_message(event, current_user, @to, params[:message]).deliver
   end
 end

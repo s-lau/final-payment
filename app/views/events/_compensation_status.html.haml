@@ -10,7 +10,9 @@
     %th
   - @event.participants.dup.push(@event.owner).each do |user|
     %tr
-      %td= link_to user.username, payment_info_event_path(user_id: user), data: { colorbox: true }
+      %td
+        = link_to user.username, payment_info_event_path(user_id: user), data: { colorbox: true }
+        = render 'users/message', user: user
       %td= @event.balance_for_user user
       %td= if user.payed_fair_share? @event then t(:yes) else t(:no) end
       %td= link_to t(:compensation_received), compensate_event_url(user:user), class: 'btn', method: :post if current_user == @event.owner and not user.payed_fair_share? @event

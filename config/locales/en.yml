@@ -1,7 +1,4 @@
 en:
-
-
-
   save: Save
   update: Update
   sure: Are you sure?
@@ -17,6 +14,8 @@ en:
   none: none
   yes: Yes
   no: No
+  send: Send
+  close: Close
 
   attributes:
     email: E-Mail
@@ -103,6 +102,17 @@ en:
         You can also use this %{qr_link}.
       you_should_receive: "You should receive %{money}"
       you_have_to_pay: "You have to pay %{money}"
+    compensation_status:
+      send_message: "Message to %{username}"
+  
+  event_mailer:
+    user_message:
+      subject: "Message from %{username}"
+      body: |
+        Concerning the event "%{event}" you got a message from "%{username}":
+        
+        %{message}
+
 
   event_charges:
     index:

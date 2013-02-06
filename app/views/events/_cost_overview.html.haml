@@ -2,7 +2,10 @@
 %p= @event.costs_for_user current_user
 
 %h3= Event.human_attribute_name :user_balance
-%p= @event.balance_for_user current_user
+- if @event.balance_for_user_cents(current_user) < 0
+  %p=t '.you_have_to_pay', money: @event.abs_balance_for_user(current_user)
+-else
+  %p=t '.you_should_receive', money: @event.balance_for_user(current_user)
 
 - if @event.is_owner? current_user and not @event.closed?
   %h3= t 'join'

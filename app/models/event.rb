@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
   monetize :total_costs_cents
   monetize :costs_for_user_cents
   monetize :balance_for_user_cents
+  monetize :abs_balance_for_user_cents
 
   attr_accessible :description, :name, :owner, :closed
   attr_protected :trashed, :trashed_at, :compensated, :compensated_at
@@ -93,6 +94,9 @@ class Event < ActiveRecord::Base
     charges.where(user_id: user.id).sum :price_cents
   end
 
+  def abs_balance_for_user_cents(user = nil)
+    balance_for_user_cents(user).abs
+  end
   def balance_for_user_cents(user = nil)
     return 0 unless user
     costs_for_user_cents(user) - total_costs_cents / (participants.count + 1) # plus owner

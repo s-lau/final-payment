@@ -1,6 +1,8 @@
 .navbar-inner
-  %a.brand{:href => root_path}= t 'app.title'
-  
+  %a.brand{:href => root_path}
+    =t 'app.title'
+    ="- Hi #{current_user.username}" if user_signed_in?
+
   %ul.nav.pull-right
     = render 'users/navbar'
     = render 'users/session_link'

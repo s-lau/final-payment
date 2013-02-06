@@ -35,6 +35,11 @@ en:
       close:
         notice: An email notifications has been sent to all participants
         error: An error occurred while billing the event
-
     event_charges:
-      create: Charge was successfully created.
+      create:
+        notice: Charge was successfully created.        
+        error: &ec_error Something's wrong o,O (<- confused owl)
+      update:
+        notice: Charge updated
+        error: *ec_error
+

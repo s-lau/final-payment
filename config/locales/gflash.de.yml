@@ -38,7 +38,7 @@ de:
     event_charges:
       create:
         notice: Kostenpunkt eingetragen.
-        error: &ec_error Irgendwie stimmt der Kostenpunkt nicht.
+        error: &ec_error Irgendwie stimmt der Kostenpunkt nicht. o,O (<- verwirrte Eule)
       update:
         notice: Kostenpunkt geändert.
         error: *ec_error

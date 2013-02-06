@@ -1,7 +1,7 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
+
+
+
   save: Save
   update: Update
   sure: Are you sure?
@@ -9,44 +9,84 @@ en:
   show: Show
   edit: Edit
   join: Join
+  leave: Leave
   destroy: Destroy
+  back: Back
+  overview: Overview
   close_event: Bill event
   none: none
   yes: Yes
   no: No
 
+  attributes:
+    email: E-Mail
+    name: Name
+    description: Description
+    price: Price
+
+
   activerecord:
-    models:
-      event_comments:
-        one: Comment
-        other: Comments
     attributes:
       event:
         owner: Organizer
+        closed: closed
+        total_costs: Total costs
+        trashed_at: trashed at
         user_balance: Your balance
         user_costs: Your charges
+      event_charge:
+        price_cents: Price (Cent)
+        bill: Bill
+        remove_bill: Remove bill
+      user:
+        remember_me: Remember me?
+        password: Password
+        password_confirmation: Confirm password
+        current_password: Current password
+    models:
+      event:
+        one: Event
+        other: Events
+      event_charge:
+        one: Event charge
+        other: Event charges
+      user: User
+      event_comment:
+        one: Comment
+        other: Comments
 
   language:
     de: german
     en: english
 
+  audits:
+    audit:
+      user:
+        create: "%{username} has joined the event"
+        destroy: "%{username} has left the event"
+      by: "by %{username}"
+      destroy: deleted
+      create: created
+      update: updated
+
+  mark_as_expenses_compensated: All charges have been acquited!
   events:
     stati:
       open: Open
       compensated: Compensated
       in_compensation: Being Compensated
       trashed: Trashed
-
-    trash: Trash it!
-    trash_confirm: Do you really want to throw this event away?
-    mark_as_expenses_compensated: Everyone payed their shares!
+    
     in_compensation: Compensation
     index:
       number_charges: '#Charges'
+      trash: Trash it!
+      trash_confirm: Do you really want to throw this event away?	
+      recover: Recover
       headings:
         overview: Events overview
         organized: Events you organized
-        contributed: Events you contributed to
+        contributed: Events you participated in
       infos:
         trashed: This is a list of events that have been organized by you, but are trashed right now.
       statistics: "There are %{total_number_events} events in the database. We're currently processing %{total_number_charges} charges with a total amount of over %{total_money_charges}€!"
@@ -54,20 +94,36 @@ en:
       new_event: New Event
     edit:
       heading: Editing event
+    show: 
+      changes: Änderungen
     cost_overview:
       join_instructions_html: |
         Send the URL <b>%{join_url}</b> to friends who should participate.<br/>
         You can also use this %{qr_link}.
+      you_should_receive: "You should receive %{money}"
+      you_have_to_pay: "You have to pay %{money}"
+
+  event_charges:
+    index:
+      new_event_charge: New event charge
+    edit:
+      heading: Edit charge
 
   event_comments:
     new: New Comment
   users:
     sign_up: Sign up
     sign_in: Sign in
+    sign_out: Sign out
     forgot_password: Forgot password?
     no_confirmation: No confirmation received?
     no_unlock: No unlock instructions received?
     sign_in_provider: "Sign in with %{provider}"
+
+    navbar:
+      settings: Settings
+      account: Account
+      events_index: All events
 
     passwords:
       new:

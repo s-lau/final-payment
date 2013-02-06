@@ -76,6 +76,8 @@ de:
       compensated: Abgeschlossen
       in_compensation: In Abrechnung
       trashed: Im Papierkorb
+
+    in_compensation: Kompensation
     index:
       number_charges: Postenanzahl
       trash: Wegwerfen
@@ -88,6 +90,7 @@ de:
       infos:
         trashed: In dieser Liste findest du deine weggeworfenen Ereignisse.
       statistics: "Insgesamt sind %{total_number_events} Ereignisse in der Datenbank. Dabei wurden %{total_number_charges} Posten eingereicht mit einer Gesamtsumme von über %{total_money_charges}€!"
+      total_events: "Gesamtanzahl der Ereignisse in der Datenbank: %{count}"
       new_event: Ereignis erstellen
     edit:
       heading: Ereignis bearbeiten
@@ -139,10 +142,10 @@ de:
           current_password: "(Änderungen müssen mit dem aktuellen Passwort bestätigt werden)"
   gflash:
     events:
-      compensate:
-        notice: Ereignis als abgeglichen markiert
       recover:
         notice: Ereignis wiederhergestelt!
+      compensate:
+        notice: Ereignis als abgeglichen markiert
       trash:
         notice: Ereignis weggeworfen!
 

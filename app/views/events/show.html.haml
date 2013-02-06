@@ -25,29 +25,30 @@
       %p= @event.description
 
       %h3= Event.human_attribute_name :owner
-      %p= @event.owner.email
-
-      %h3= Event.human_attribute_name :total_costs
-      %p= @event.total_costs
-
-      - if [:open].include? @event.status
-        = render "cost_overview"
-      - else
-        = render "compensation_status"
-
-      .btn-group
-        - if can? :close, @event
-          = link_to t('close_event'), close_event_path, class: 'btn btn-primary', method: 'post'
-        - if can? :compensate_all, @event
-          = link_to t('mark_as_expenses_compensated'), compensate_all_event_path, class: 'btn btn-success', method: 'post', id: 'markascompensated_button'
-        - if can? :trash, @event
-          = link_to t('events.index.trash'), trash_event_path, class: 'btn btn-warning'
-        - unless @event.is_owner? current_user
-          - if @event.is_participant? current_user
-            = link_to t('leave'), leave_event_path, class: 'btn', method: 'post'
-        - if can? :update, @event
-          = link_to t('edit'), edit_event_path(@event), class: 'btn'
-        = link_to t('back'), events_path, class: 'btn'
+      %p= @event.owner.username
+      
+      - if @event.is_participant? current_user
+        %h3= Event.human_attribute_name :total_costs
+        %p= @event.total_costs
+  
+        - if [:open].include? @event.status
+          = render "cost_overview"
+        - else
+          = render "compensation_status"
+  
+        .btn-group
+          - if can? :close, @event
+            = link_to t('close_event'), close_event_path, class: 'btn btn-primary', method: 'post'
+          - if can? :compensate_all, @event
+            = link_to t('mark_as_expenses_compensated'), compensate_all_event_path, class: 'btn btn-success', method: 'post', id: 'markascompensated_button'
+          - if can? :trash, @event
+            = link_to t('events.index.trash'), trash_event_path, class: 'btn btn-warning'
+          - unless @event.is_owner? current_user
+            - if @event.is_participant? current_user
+              = link_to t('leave'), leave_event_path, class: 'btn', method: 'post'
+          - if can? :update, @event
+            = link_to t('edit'), edit_event_path(@event), class: 'btn'
+          = link_to t('back'), events_path, class: 'btn'
 
     - if @event.is_participant? current_user
       #charges.tab-pane
@@ -57,7 +58,7 @@
           %ul.media-list
             = render @event_audits[:new]
             = render @event_audits[:old], item_disabled: true
-
+  
       #comments.tab-pane
         %h2= EventComment.model_name.human count:0
         .comments
@@ -70,9 +71,9 @@
                 = comment.text
               .date -- vor #{distance_of_time_in_words comment.created_at, Time.now}
             %br
-
+  
           %div
-
+  
         - if can? :create, @event.comments.build
           %h3= t 'event_comments.new'
           = bootstrap_form_for @event.comments.new, url: comment_event_path(@event) do |f|

@@ -1,7 +1,4 @@
 de:
-  app:
-    title: Final Payment
-
   save: Speichern
   update: Aktualisieren
   sure: Wirklich? Sicher???
@@ -13,12 +10,14 @@ de:
   destroy: Löschen
   back: Zurück
   overview: Übersicht
-  close_event: Abrechnen
   none: Keine
-  yes: Ja
-  no: Nein
+  "yes": Ja
+  "no": Nein
   send: Senden
   close: Schliessen
+  
+  app:
+    title: Final Payment
 
   attributes:
     email: E-Mail
@@ -72,8 +71,11 @@ de:
       create: erstellt
       update: geändert
 
-  mark_as_expenses_compensated: Alle haben ihre Schulden bezahlt!
   events:
+    close: Abrechnen
+    compensation:
+      received: Betrag erhalten
+      sent: Betrag gegeben
     stati:
       open: Offen
       compensated: Abgeschlossen
@@ -99,6 +101,7 @@ de:
       heading: Ereignis bearbeiten
     show:
       changes: Änderungen
+      mark_as_expenses_compensated: Alle haben ihre Schulden bezahlt!
     cost_overview:
       join_instructions_html: |
         Gib einfach die URL <b>%{join_url}</b> an Leute weiter die beitreten dürfen.<br/>
@@ -106,7 +109,19 @@ de:
       you_should_receive: "Du erhältst %{money}."
       you_have_to_pay: "Du musst %{money} zahlen."
     compensation_status:
-      send_message: "Nachricht an %{username}"
+      compensationphase: Kompensationsphase
+      share: Anteil
+      payed: Bezahlt?
+      help:
+        participant_html: |
+          Wenn du einen negativen Anteil hast, dann zahle das Geld den Ersteller des Ereignisses. <br/>
+          %{owner}'s Zahlungshinweise:<br/>
+          %{payment_info}<br/>
+          Ansonsten wird dir dein Anteil, wie in deinem Zahlungsinformationen angegeben, ausgezahlt.
+        owner_html: |
+          Teilnehmer mit negativem Anteil werden dir den Betrag zukommen lassen wie es in deinen Zahlungsinformationen steht.
+          Das erhaltene Geld wird von dir dann an die anderen mit positivem Anteil ausgezahlt. Deren Zahlungsinformationen erhältst
+          du durch Klick auf ihren Benutzernamen.
   
   event_mailer:
     user_message:
@@ -134,7 +149,10 @@ de:
     no_confirmation: Keine Bestätigung erhalten?
     no_unlock: Keine Entsperranleitung erhalten?
     sign_in_provider: "Anmelden mit %{provider}"
-
+    
+    message:
+      send_message: "Nachricht an %{username}"
+    
     navbar:
       settings: Einstellungen
       account: Benutzerkonto
@@ -154,12 +172,3 @@ de:
         help:
           password: "(leer lassen wenn das Passwort nicht geändert werden soll)"
           current_password: "(Änderungen müssen mit dem aktuellen Passwort bestätigt werden)"
-  gflash:
-    events:
-      recover:
-        notice: Ereignis wiederhergestellt!
-      compensate:
-        notice: Ereignis als abgeglichen markiert
-      trash:
-        notice: Ereignis weggeworfen!
-

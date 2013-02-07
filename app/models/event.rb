@@ -20,7 +20,11 @@ class Event < ActiveRecord::Base
 
   scope :active, where(trashed: false)
   scope :trashed, where(trashed: true)
-
+  
+  def users
+    self.participants.dup.push(self.owner)
+  end
+  
   def owned_audits
     Audit.where(owner_type: 'Event', owner_id: id).reorder 'created_at DESC'
   end

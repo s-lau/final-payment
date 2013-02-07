@@ -19,7 +19,7 @@
     #overview.tab-pane.active
 
       %h3 Status
-      %p= t "events.stati.#{@event.status.to_s}"
+      %p= t @event.status, scope: 'events.stati'
 
       %h3= Event.human_attribute_name :description
       %p= @event.description
@@ -41,9 +41,9 @@
   
         .btn-group
           - if can? :close, @event
-            = link_to t('close_event'), close_event_path, class: 'btn btn-primary', method: 'post'
+            = link_to t('events.close'), close_event_path, class: 'btn btn-primary', method: 'post'
           - if can? :compensate_all, @event
-            = link_to t('mark_as_expenses_compensated'), compensate_all_event_path, class: 'btn btn-success', method: 'post', id: 'markascompensated_button'
+            = link_to t('.mark_as_expenses_compensated'), compensate_all_event_path, class: 'btn btn-success', method: 'post', id: 'markascompensated_button'
           - if can? :trash, @event
             = link_to t('events.index.trash'), trash_event_path, class: 'btn btn-warning'
           - unless @event.is_owner? current_user

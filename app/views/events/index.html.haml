@@ -25,12 +25,12 @@
       %td= event.description
       %td= event.total_costs
       %td= event.charges.count
-      %td= t "events.stati.#{event.status}"
+      %td= t event.status, scope: 'events.stati'
       %td= link_to t(:show), event, class: 'btn' if can? :read, event
       %td= link_to t(:edit), edit_event_url(event), class: 'btn', id: "link_edit_event_#{event.id}" if can? :update, event
-      %td= link_to t(:close_event), event, class: 'btn' if can? :close, event
+      %td= link_to t('events.close'), event, class: 'btn' if can? :close, event
       %td= link_to t('.trash'), trash_event_url(event),
-        class: 'btn btn-warning', confirm: t('events.index.trash_confirm') if can? :trash, event
+        class: 'btn btn-warning', confirm: t('.trash_confirm') if can? :trash, event
 
 
 - if can? :create, Event
@@ -50,7 +50,7 @@
       %td= event.name
       %td= event.description
       %td= event.total_costs
-      %td= t "events.stati.#{event.status}"
+      %td= t event.status, scope: 'events.stati'
       %td= link_to t(:show), event, class: 'btn' if can? :read, event
 
 %h2= t '.headings.trashed'
@@ -67,7 +67,7 @@
       %tr
         %td=trashed_event.name
         %td=trashed_event.trashed_at
-        %td= link_to t('events.index.recover'), recover_event_url(trashed_event), class: 'btn btn-success'
+        %td= link_to t('.recover'), recover_event_url(trashed_event), class: 'btn btn-success'
 
 - else
   %strong.lead= t 'none'

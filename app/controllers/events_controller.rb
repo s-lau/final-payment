@@ -224,6 +224,8 @@ class EventsController < ApplicationController
     if current_user == event.owner || user == event.owner
       info = user.description.presence || t('users.no_description')
       render text: info, layout: false
+    else
+      head 403
     end
   end
   

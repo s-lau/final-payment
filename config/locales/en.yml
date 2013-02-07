@@ -10,10 +10,9 @@ en:
   destroy: Destroy
   back: Back
   overview: Overview
-  close_event: Bill event
   none: none
-  yes: Yes
-  no: No
+  "yes": Yes
+  "no": No
   send: Send
   close: Close
 
@@ -69,8 +68,11 @@ en:
       create: created
       update: updated
 
-  mark_as_expenses_compensated: All charges have been acquited!
   events:
+    close: Bill event
+    compensation:
+      received: Money received
+      sent: Money sent
     stati:
       open: Open
       compensated: Compensated
@@ -96,6 +98,7 @@ en:
       heading: Editing event
     show: 
       changes: Änderungen
+      mark_as_expenses_compensated: All charges have been acquited!
     cost_overview:
       join_instructions_html: |
         Send the URL <b>%{join_url}</b> to friends who should participate.<br/>
@@ -103,7 +106,18 @@ en:
       you_should_receive: "You should receive %{money}"
       you_have_to_pay: "You have to pay %{money}"
     compensation_status:
-      send_message: "Message to %{username}"
+      compensationphase: Compensationsphase
+      share: Share
+      payed: Payed?
+      help:
+        participant_html: |
+          If you have negative share, then pay your debt to the events owner. <br/>
+          %{owner}'s payment info:<br/>
+          %{payment_info}<br/>
+          Otherwise you receive your share.
+        owner_html: |
+          Participants with negative share will send you money as you specified in your payment information.
+          You send this money to those with positive share. You can view their payment info by clicking on their name.
   
   event_mailer:
     user_message:
@@ -136,6 +150,9 @@ en:
       settings: Settings
       account: Account
       events_index: All events
+      
+    message:
+      send_message: "Message to %{username}"
 
     passwords:
       new:
@@ -151,12 +168,3 @@ en:
         help:
           password: "(leave blank if you don't want to change it)"
           password_confirmation: "(we need your current password to confirm your changes)"
-  gflash:
-    events:
-      recover:
-        notice: Event recycled!
-      compensate:
-        notice: Event marked as compensated
-      trash:
-        notice: Event trashed!
-

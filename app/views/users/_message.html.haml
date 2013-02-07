@@ -6,7 +6,7 @@
     %h3= t '.send_message', username: user.username
   = form_tag message_event_path(user_id: user), remote: true do
     .modal-body
-      = text_area_tag :message, nil, style: 'width: 98%; height: 10em'
+      = text_area_tag :message, nil, style: 'width: 97%; height: 10em'
     .modal-footer
       %a.btn{:href => '#', :'data-dismiss' => 'modal'}= t 'close'
       = submit_tag t('send'), class: 'btn btn-primary'

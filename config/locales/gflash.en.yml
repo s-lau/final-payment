@@ -39,6 +39,8 @@ en:
         notice: Event recycled!
       compensate:
         notice: Event marked as compensated
+      compensate_all:
+        notice: Event marked as compensated
       trash:
         notice: Event trashed!
     event_charges:

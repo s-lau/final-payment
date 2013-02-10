@@ -42,8 +42,8 @@ class Event < ActiveRecord::Base
     self.save
   end
 
-  def compensate user
-    mark_share_compensated user
+  def compensate user, action
+    mark_share_compensated user, action
   end
 
   def close
@@ -108,15 +108,19 @@ class Event < ActiveRecord::Base
   private
   def mark_all_shares_compensated
     self.participants.each do |participant|
-      mark_share_compensated participant
+      mark_share_compensated participant, :received
     end
-    mark_share_compensated self.owner
+    mark_share_compensated self.owner, :received
   end
-
-  def mark_share_compensated participant
-    if EventCompensation.where(user_id: participant, event_id: self).count == 0
-      EventCompensation.create user: participant, event: self
+  
+  def mark_share_compensated participant, action
+    action = action.to_sym
+    ec = EventCompensation.where(user_id: participant, event_id: self).first
+    if ec.blank?
+      ec = EventCompensation.new user: participant, event: self, sent: true
     end
+    ec.received = action == :received
+    ec.save
   end
 
 end

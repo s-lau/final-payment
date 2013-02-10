@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     event.owner == self or self.joined_events.include? event
   end
 
-  def payed_fair_share? event
-    EventCompensation.done? event, self
+  def payed_fair_share? event, action = :sent
+    EventCompensation.send :"#{action}?", event, self
   end
 end

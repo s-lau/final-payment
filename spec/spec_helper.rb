@@ -1,4 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'simplecov'
+SimpleCov.start 'rails'
+
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -42,9 +45,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-  
+
   config.include Features::SessionHelpers, type: :feature
-  
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
@@ -62,7 +65,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
     Capybara.current_session.reset_session!
   end
-  
+
   config.after(:suite) do
     CarrierWave.clean_cached_files!
   end

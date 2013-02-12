@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Abschlusspräsentation 13. Februar 2013</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write('<link rel="stylesheet" href="css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <h1>Projekt final-payment</h1>
+          <h3>(Ruby on Rails)</h3>
+        </section>
+
+        <section>
+          <h2>Agenda</h2>
+          <ul>
+            <li>Stand des Projekts</li>
+            <li>Arbeit mit dem Framework</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Wie weit ist das Projekt?</h2>
+          <h4 class="fragment">Wir sind fertig.</h4>
+          <ul class="fragment">
+            <li>Alle Requirements implementiert</li>
+            <li>Code auf Github: <a href="http://tinyurl.com/finpay">http://tinyurl.com/finpay</a></li>
+            <li>Requirements mit Feature Tests abgedeckt (ca. 80% CC)</li>
+            <li>Zeitaufwand (gesamt): ca. 100h</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Eingesetzte Technologien (Auswahl)</h2>
+          <ul>
+            <li>Ruby on Rails</li>
+            <li>Template-Sprache: HAML</li>
+            <li>Clientseitiges Scripting: CoffeeScript</li>
+            <li>Templating-Framework: Bootstrap</li>
+            <li>Über ein Dutzend Gems aus unterschiedlichen Bereichen</li>
+          </ul>
+          <br /><br />
+          <h3 class="fragment">Etwa 1800 Zeilen Code<br />(Templates, Ruby Scripts, CoffeeScript)</h3>
+        </section>
+
+        <section>
+          <h2>Arbeit mit dem Framework</h2>
+          <ul>
+            <li>(Subjektive) Einschätzungen/Erfahrungen</li>
+            <li>Gut (+++) bis überhaupt nicht gut (---)</li>
+            <li>(Wenig projektspezifischer Code, das kennt ihr schon!)</li>
+            <li>Zeitangaben</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Templating (+++)</h2>
+          <ul>
+            <li>Template-Engines durch GEMs dynamisch austauschbar</li>
+            <li>Wir verwenden HAML
+              <ul>
+                <li>Ultra kurze Notation von HTML-Templates</li>
+                <li>Intuitiv, sehr schnell zu lernen</li>
+                <li>Viele Features, schnelle Ergebnisse</li>
+                <li>Gemeinsam mit Bootstrap auch noch schick!</li>
+              </ul>
+            </li>
+            <li>Zeitaufwand Layout/Optik: etwa 5 Stunden</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Persistenz und Validierung (+++)</h2>
+          <ul>
+            <li>Nutzung von ActiveRecord und ActiveModel als ORM</li>
+              <ul>
+                <li>Großer Funktionsumfang</li>
+                <li>Wir verwenden Migrations, Scopes, Validierung, Observer, Seeds, ...</li>
+                <li>Ausgezeichnete Dokumentation</li>
+              </ul>
+            <li>Unsere Engine: SQLite3 </li>
+            <li>Zeitaufwand Datenmodellierung: etwa 10 Stunden</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Erweiterbarkeit: Gem-Kosmos (--)</h2>
+            <ul>
+              <li>Gut:</li>
+              <ul>
+                <li>Es gibt für (fast) jedes Problem irgendwo ein Gem</li>
+                <li>Wiederkehrende Probleme haben Standardgems hervorgebracht<br />(CanCan, Devise, Bootstrap, ...)</li>
+              </ul>
+              <li>Nicht so gut:</li>
+              <ul>
+                <li>Man muss sich regelmäßig einen Überblick verschaffen</li>
+                <li>Einarbeitungsaufwand (z.B. CanCan-Autorisierung, ...)</li>
+                <li>"kleinere" Gems nicht immer up-to-date oder nicht mehr gepflegt</li>
+              </ul>
+            </ul>
+        </section>
+<!-- <section> -->
+<!--         <section> -->
+<!--           <h2>Architekturmuster</h2> -->
+<!-- 	 <ul> -->
+<!-- 	   <li>MVC:</li> -->
+<!-- 	  <ul> -->
+<!-- 	    <li>Requests/Aktionen werden an Controller-Klassen geroutet</li> -->
+<!-- 	    <li>Controller ändern Model</li> -->
+<!-- 	    <li>Model erneuert View</li> -->
+<!-- 	  </ul> -->
+<!-- 	 </ul> -->
+<!--         </section> -->
+<!--  -->
+<!-- 	<section> -->
+<!--             <pre><code class="ruby"> -->
+<!--   # event_charges_controller.rb -->
+<!--   # POST /event_charges -->
+<!--   def create -->
+<!--     @event_charge = @event.charges.new(params[:event_charge]) -->
+<!--     @event_charge.user = current_user -->
+<!--     ... -->
+<!--   end -->
+<!-- 	    </code></pre> -->
+<!--  -->
+<!--             <pre><code class="ruby"> -->
+<!--   #event.rb -->
+<!--   def costs_for_user_cents(user = nil) -->
+<!--     return 0 unless user -->
+<!--     charges.where(user_id: user.id).sum :price_cents -->
+<!--   end -->
+<!--        </code></pre> -->
+<!--             <pre><code class="haml"> -->
+<!--       %h3= Event.human_attribute_name :user_balance -->
+<!--       %p= @event.balance_for_user current_user -->
+<!--             </code></pre> -->
+<!-- 	</section> -->
+<!-- </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Erweiterbarkeit</h2> -->
+<!-- 	  <pre><code class="ruby"> -->
+<!-- #Gemfile -->
+<!-- gem 'money-rails' -->
+<!-- 	  </code></pre> -->
+<!-- 	  <pre> -->
+<!-- 	  <code class="ruby"> -->
+<!-- class EventDecorator < ApplicationDecorator -->
+<!--   decorates :event -->
+<!--   <strong style="color:red;">monetize</strong> :total_costs, :balance_for_user, :costs_for_user -->
+<!-- end -->
+<!--           </code></pre> -->
+<!--  -->
+<!--         </section> -->
+<!--  -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Formularunterstützung</h2> -->
+<!--           <ul> -->
+<!--             <li> -->
+<!--               Twitter Bootstrap Format -->
+<!--               <br> -->
+<!--               -&gt; angepasster Formbuilder (Gem) -->
+<!--             </li> -->
+<!--             <li> -->
+<!--               automatisches Labeling -->
+<!--             </li> -->
+<!--           </ul> -->
+<!--           <pre><code class="haml">= bootstrap_form_for @event_charge, url: event_charges_path(@event) do |f| -->
+<!--   = f.text_field :name -->
+<!--   = f.price_field :price -->
+<!--   = f.file_field :bill -->
+<!--   - if f.object.bill.uploaded? -->
+<!--     = f.check_box :remove_bill, :label => f.label(:remove_bill) -->
+<!--   = f.actions do -->
+<!--     = f.primary t('save') -->
+<!--                     </code></pre> -->
+<!--         </section> -->
+<!--  -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Validierung</h2> -->
+<!--           <ul> -->
+<!--             <li>Standardvalidatoren bisher ausreichend</li> -->
+<!--             <li>impliziter Validator für Preisformatierung durch Gem <code>money-rails</code></li> -->
+<!--           </ul> -->
+<!--           <pre><code class="ruby">class EventCharge < ActiveRecord::Base -->
+<!--   belongs_to :event -->
+<!--   belongs_to :user -->
+<!--  -->
+<!--   monetize :price_cents -->
+<!--  -->
+<!--   validates :name, presence: true -->
+<!-- end -->
+<!--           </code></pre> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Authentifizierung</h2> -->
+<!--           <ul> -->
+<!--             <li>Datenbankauthentifizierung mit Gem <code>Devise</code></li> -->
+<!--             <li>funktioniert nach Modelgenerierung und Datenbankmigration OOTB</li> -->
+<!--             <li>Anpassung der Views für Bootstrap</li> -->
+<!--             <li>nachträgliche Aktivierung des <em>confirmation</em>-Moduls</li> -->
+<!--           </ul> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <section><h2>Autorisierung</h2> -->
+<!--           <ul> -->
+<!--             <li>resourcenbasierte Autorisierung mit Gem <code>CanCan</code></li> -->
+<!--             <li>erwartet lediglich eine vorhandene Klasse <code>Ability</code> mit bestimmten Regeln</li> -->
+<!--           </ul> -->
+<!--           </section> -->
+<!--           <section> -->
+<!--             <pre><code class="ruby">class Ability -->
+<!--   include CanCan::Ability -->
+<!--  -->
+<!--   def initialize(user) -->
+<!--     user ||= User.new -->
+<!--  -->
+<!--     alias_action :close, :read, :update, :destroy, :to => :modify -->
+<!--  -->
+<!--     # all -->
+<!--     can :create, Event -->
+<!--     can :join, Event -->
+<!--     can :leave, Event -->
+<!--  -->
+<!--     # events owner -->
+<!--     can :read,   Event, owner: user -->
+<!--     can :modify, Event, owner: user, closed: false -->
+<!--     can :manage, EventCharge, event: { owner: user, closed: false } -->
+<!--     can :manage, EventComment, event: { owner: user } -->
+<!--  -->
+<!--     # events participants -->
+<!--     can :read, Event, event_participations: { user_id: user.id } -->
+<!--     can :create, EventCharge, event: { event_participations: { user_id: user.id }, closed: false } -->
+<!--     can :modify, EventCharge, user: user, event: { closed: false } -->
+<!--     can :create, EventComment, event: { event_participations: { user_id: user.id } } -->
+<!--   end -->
+<!-- end -->
+<!--             </code></pre> -->
+<!--           </section> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <section><h2>Autorisierung</h2> -->
+<!--             <ul> -->
+<!--               <li>kann auch automagisch in CRUD Controllern Resourcen laden und autorisieren</li> -->
+<!--               <li>funktioniert auch gut mit verschachtelten Resourcen</li> -->
+<!--             </ul> -->
+<!--           </section> -->
+<!--           <section> -->
+<!--             <pre><code class="ruby"> -->
+<!-- class EventChargesController < ApplicationController -->
+<!--   before_filter :authenticate_user! -->
+<!--   load_and_authorize_resource :event -->
+<!--   load_and_authorize_resource :event_charge, through: :event, through_association: :charges -->
+<!--  -->
+<!--   def destroy -->
+<!--     @event_charge.destroy -->
+<!--     redirect_to redirect_to event_path(@event, anchor: 'charges') -->
+<!--   end -->
+<!-- end -->
+<!--             </code></pre> -->
+<!--             <pre><code class="haml"> -->
+<!-- - if can? :create, @event.charges.build -->
+<!--   = link_to 'New charge' -->
+<!--             </code></pre> -->
+<!--           </section> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <section> -->
+<!--             <h2>Lokalisierung/Internationalisierung</h2> -->
+<!--               <ul> -->
+<!--                 <li>Webanwendung hat eine <em>current locale</em>: <code>I18N.locale</code></li> -->
+<!--                 <li>Übersetzung von Strings in Key-Value-Dateien in <code>config/locale/</code></li> -->
+<!--                 <li>Wir unterstützen z.Z. Deutsch und Englisch, aber nicht völlig deckungsgleich</li> -->
+<!--                 <li class="fragment" style="color: #FF3333;">Problem: Wie kann ich feststellen, ob ich alle Strings in allen Sprachen vorliegen habe?</li> -->
+<!--               </ul> -->
+<!--           </section> -->
+<!--  -->
+<!--           <section> -->
+<!--             <h2>Codebeispiel</h2> -->
+<!--  -->
+<!--             Aus einem HAML-Template in unserem <em>Events</em>-System: -->
+<!--             <pre> -->
+<!--               <code> -->
+<!--     %p#statistics= <strong style="color:red;">t '.statistics'</strong>, total_number_events: @events[:total_number_events], total_number_charges: @events[:total_number_charges], total_money_charges: (@events[:total_cents_charges]/100).round(0) -->
+<!--               </code> -->
+<!--             </pre> -->
+<!--             <div class="fragment"> -->
+<!--               Dazu die entsprechenden Einträge aus <code>config/locale/[en|de].yml</code> -->
+<!--               <pre><code> -->
+<!--                     en.yml: statistics: "There are %{total_number_events} events in the database. We're currently processing %{total_number_charges} charges with a total amount of over %{total_money_charges}€!" -->
+<!--  -->
+<!--                     de.yml: statistics: "Insgesamt sind %{total_number_events} Ereignisse in der Datenbank. Dabei wurden %{total_number_charges} Posten eingereicht mit einer Gesamtsumme von über %{total_money_charges}€!" -->
+<!--               </code></pre> -->
+<!--           </div> -->
+<!--             <br /> -->
+<!--             <h3 class="fragment">Grundsätzlich super einfach! Eventuell viel Aufwand bei vielen Übersetzungen.</h3> -->
+<!--             <h5 class="fragment">... wir pflegen aktuell etwa 80 Übersetzungen im Deutschen</h5> -->
+<!--           </section> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Routing</h2> -->
+<!--           <h3>./config/routes.rb</h3> -->
+<!--           <pre> -->
+<!--           <code class="ruby"> -->
+<!--   resources :events do -->
+<!--     member do -->
+<!--       post 'comment' -->
+<!--       get  'j/:token', action: :join, as: :join -->
+<!--       post 'leave' -->
+<!--       get  'join_qr_code' -->
+<!--       post 'close' -->
+<!--       get 'trash' -->
+<!--       get 'recover' -->
+<!--     end -->
+<!--     resources :event_charges, as: :charges, except: [:show, :new] -->
+<!--   end -->
+<!--  -->
+<!--   devise_for :users -->
+<!--  -->
+<!--   get "home/index" -->
+<!--   root :to => 'events#index' -->
+<!--           </code> -->
+<!--           </pre> -->
+<!--           <h3 class="fragment">Convention over Configuration at its Best</h3> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Bootstrapping</h2> -->
+<!--           <ul> -->
+<!--             <li><code>git init</code> zu Beginn des Projekts erstellt die Ordnerstrukturen</li> -->
+<!--             <li>Anschließende Auswahl der zu verwendenden Komponenten durch Installation der benötigten <strong>gem</strong>s</li> -->
+<!--             <li>Allerdings: Wir haben kein großes Datenbank-Setup</li> -->
+<!--           </ul> -->
+<!--           <br /> -->
+<!--           <br /> -->
+<!--           <h3 class="fragment">Einfach, Robust, Stressfrei</h3> -->
+<!--           <h5 class="fragment">... wenn man die nötigen gems kennt</h5> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Scaffolding</h2> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Sicherheit</h2> -->
+<!--           <ul> -->
+<!--             <li><code>csrf_meta_tags</code> in <em>Views</em> generiert CSRF-Tags</li> -->
+<!--             <li>Allerdings bleibt mehr einem selbst überlassen als bisher angenommen, typische Fallstricke:</li> -->
+<!--             <ul> -->
+<!--               <li><code>attr_accessible</code> erlaubt Massenzuweisungen</li> -->
+<!--               <li>Zu viel Vertrauen in externe <em>gem</em>s</li> -->
+<!--             </ul> -->
+<!--           </ul> -->
+<!--           <h3 class="fragment" style="margin-top: 50px; color: red;">Shocking: In den letzten 4 Wochen 3 Zero-Day-Exploits für Rails aufgetaucht!</h3> -->
+<!--         </section> -->
+<!--  -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Konfiguration</h2> -->
+<!-- 	  <ul> -->
+<!-- 	    <li>Convention over Configuration </li> -->
+<!-- 	    <ul> -->
+<!-- 	      <li> Konfiguration ist dadurch minimal</li> -->
+<!-- 	    </ul> -->
+<!-- 	    <li>Bei Bedarf gibt es einfache Konfigurationsdateien</li> -->
+<!-- 	  </ul> -->
+<!--         </section> -->
+<!--  -->
+<!--         <section> -->
+<!--           <h2>Community & Documentation</h2> -->
+<!-- 	  <ul> -->
+<!--             <li>StackOverflow.com</li> -->
+<!--             <li>api.rubyonrails.org</li> -->
+<!--           </ul> -->
+<!--         </section> -->
+<!-- 	<section> -->
+<!-- 	  <section> -->
+<!-- 	    <h2>Fazit</h2> -->
+<!-- 	  </section> -->
+<!-- 	<section> -->
+<!--           <h2>Aus Anfängersicht</h2> -->
+<!-- 	  <ul> -->
+<!--             <li>Convention over Configuration</li> -->
+<!-- 	    <ul> -->
+<!--               <li>auf den ersten Blick ist Code schwer nachvollziehbar</li> -->
+<!--               <li>man kann mit wenigen Zeilen vieles machen</li> -->
+<!-- 	    </ul> -->
+<!--           </ul> -->
+<!--         </section> -->
+<!-- 	</section> -->
+
+      </div>
+
+      <script src="lib/js/head.min.js"></script>
+      <script src="js/reveal.min.js"></script>
+
+      <script>
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+          controls : true,
+          progress : true,
+          history : true,
+          center : true,
+
+          theme : Reveal.getQueryHash().theme, // available themes are in /css/theme
+          transition : Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+          // Optional libraries used to extend on reveal.js
+          dependencies : [{
+            src : 'lib/js/classList.js',
+            condition : function() {
+              return !document.body.classList;
+            }
+          }, {
+            src : 'plugin/markdown/showdown.js',
+            condition : function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          }, {
+            src : 'plugin/markdown/markdown.js',
+            condition : function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          }, {
+            src : 'plugin/highlight/highlight.js',
+            async : true,
+            callback : function() {
+              hljs.initHighlightingOnLoad();
+            }
+          }, {
+            src : 'plugin/zoom-js/zoom.js',
+            async : true,
+            condition : function() {
+              return !!document.body.classList;
+            }
+          }, {
+            src : 'plugin/notes/notes.js',
+            async : true,
+            condition : function() {
+              return !!document.body.classList;
+            }
+          }
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+          ]
+        });
+
+      </script>
+
+  </body>
+</html>

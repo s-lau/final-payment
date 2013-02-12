@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Abschlusspräsentation 13. Februar 2013</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write('<link rel="stylesheet" href="css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <h1>Projekt final-payment</h1>
+          <h3>(Ruby on Rails)</h3>
+        </section>
+
+        <section>
+          <h2>Agenda</h2>
+          <ul>
+            <li>Stand des Projekts</li>
+            <li>Arbeit mit dem Framework</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Wie weit ist das Projekt?</h2>
+          <h4 class="fragment">Wir sind fertig.</h4>
+          <ul class="fragment">
+            <li>Alle Requirements implementiert</li>
+            <li>Code auf Github: <a href="http://tinyurl.com/finpay">http://tinyurl.com/finpay</a></li>
+            <li>Requirements mit Feature Tests abgedeckt (ca. 80% CC)</li>
+            <li>Zeitaufwand (gesamt): ca. 100h</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Eingesetzte Technologien (Auswahl)</h2>
+          <ul>
+            <li>Ruby on Rails</li>
+            <li>Template-Sprache: HAML</li>
+            <li>Clientseitiges Scripting: CoffeeScript</li>
+            <li>Templating-Framework: Bootstrap</li>
+            <li>Über ein Dutzend Gems aus unterschiedlichen Bereichen</li>
+          </ul>
+          <br /><br />
+          <h3 class="fragment">Etwa 1800 Zeilen Code<br />(Templates, Ruby Scripts, CoffeeScript)</h3>
+        </section>
+
+        <section>
+          <h2>Arbeit mit dem Framework</h2>
+          <ul>
+            <li>(Subjektive) Einschätzungen/Erfahrungen</li>
+            <li>Gut (+++) bis überhaupt nicht gut (---)</li>
+            <li>(Wenig projektspezifischer Code, das kennt ihr schon!)</li>
+            <li>Zeitangaben</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Templating (+++)</h2>
+          <ul>
+            <li>Template-Engines durch GEMs dynamisch austauschbar</li>
+            <li>Wir verwenden HAML
+              <ul>
+                <li>Ultra kurze Notation von HTML-Templates</li>
+                <li>Intuitiv, sehr schnell zu lernen</li>
+                <li>Viele Features, schnelle Ergebnisse</li>
+                <li>Gemeinsam mit Bootstrap auch noch schick!</li>
+              </ul>
+            </li>
+            <li>Zeitaufwand Layout/Optik: etwa 5 Stunden</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Persistenz und Validierung (+++)</h2>
+          <ul>
+            <li>Nutzung von ActiveRecord und ActiveModel als ORM</li>
+              <ul>
+                <li>Großer Funktionsumfang</li>
+                <li>Wir verwenden Migrations, Scopes, Validierung, Observer, Seeds, ...</li>
+                <li>Ausgezeichnete Dokumentation</li>
+              </ul>
+            <li>Unsere Engine: SQLite3 </li>
+            <li>Zeitaufwand Datenmodellierung: etwa 10 Stunden</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Erweiterbarkeit: Gem-Kosmos (--)</h2>
+            <ul>
+              <li>Gut:</li>
+              <ul>
+                <li>Es gibt für (fast) jedes Problem irgendwo ein Gem</li>
+                <li>Wiederkehrende Probleme haben Standardgems hervorgebracht<br />(CanCan, Devise, Bootstrap, ...)</li>
+              </ul>
+              <li>Nicht so gut:</li>
+              <ul>
+                <li>Man muss sich regelmäßig einen Überblick verschaffen</li>
+                <li>Einarbeitungsaufwand (z.B. CanCan-Autorisierung, ...)</li>
+                <li>"kleinere" Gems nicht immer up-to-date oder nicht mehr gepflegt</li>
+              </ul>
+            </ul>
+        </section>
+        
+        <section>
+          <h2>Formulare: bootstrap_form(++)</h2>
+          <ul>
+            <li>angepasster Formbuilder für Bootstrap</li>
+            <li>lediglich Definition der Felder und Typen nötig</li>
+            <li>automatisches Labelling und Fehlermarkierung</li>
+            <li>Standard Formbuilder etwas umständlicher</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Authentifizierung: Devise (+++)</h2>
+          <ul>
+            <li>komplett durch Devise realisiert</li>
+            <li>wenig Änderungen nötig</li>
+            <li>alles was man braucht!</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Autorisierung: CanCan (++)</h2>
+          <ul>
+            <li>einfache DSL</li>
+            <li>gute Integration in die Controller</li>
+            <li>verlässt sich viel auf Konventionen, Autorisierung mit verschachtelten Resourcen etwas umständlich</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Routing (++)</h2>
+          <ul>
+            <li>nur Restful-Resources benutzt</li>
+            <li>bei dynamischen Segmenten muss Controlleraction und Routenname mit angegeben werden</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Sicherheit (--)</h2>
+          <ul>
+            <li>OOTB: SQL-injection, CRSF, Code-Injection, Mass-Assignment</li>
+            <li>Secure by default! :D</li>
+            <li>ABER gestern mal wieder: CVE-2013-0276 (5. dieses Jahr)</li>
+            <li>Rails Magic schafft Angriffsvektoren :(</li>
+          </ul>
+        </section>
+      </div>
+
+      <script src="lib/js/head.min.js"></script>
+      <script src="js/reveal.min.js"></script>
+
+      <script>
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+          controls : true,
+          progress : true,
+          history : true,
+          center : true,
+
+          theme : Reveal.getQueryHash().theme, // available themes are in /css/theme
+          transition : Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+          // Optional libraries used to extend on reveal.js
+          dependencies : [{
+            src : 'lib/js/classList.js',
+            condition : function() {
+              return !document.body.classList;
+            }
+          }, {
+            src : 'plugin/markdown/showdown.js',
+            condition : function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          }, {
+            src : 'plugin/markdown/markdown.js',
+            condition : function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          }, {
+            src : 'plugin/highlight/highlight.js',
+            async : true,
+            callback : function() {
+              hljs.initHighlightingOnLoad();
+            }
+          }, {
+            src : 'plugin/zoom-js/zoom.js',
+            async : true,
+            condition : function() {
+              return !!document.body.classList;
+            }
+          }, {
+            src : 'plugin/notes/notes.js',
+            async : true,
+            condition : function() {
+              return !!document.body.classList;
+            }
+          }
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+          ]
+        });
+
+      </script>
+
+  </body>
+</html>

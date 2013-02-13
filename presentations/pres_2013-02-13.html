@@ -127,7 +127,23 @@
               </ul>
             </ul>
         </section>
-        
+
+        <section>
+          <h2>Bootstrapping und Installation (+++)</h2>
+          <ul>
+            <li>Bootstrapping: binnen Sekunden</li>
+            <li>Installiert euch selbst eine Kopie der Software!</li>
+            <ol>
+              <li>Github Repository clonen</li>
+              <li><code>$&gt; bundle install</code></li>
+              <li><code>$&gt; rake db:setup</code></li>
+              <li><code>$&gt; rails server</code></li>
+              <li><a href="http://localhost:3000">localhost:3000</a></li>
+              <li>Mit <em>test1@example.com</em> und Passwort <em>123</em> einloggen</li>
+            </ol>
+          </ul>
+        </section>
+
         <section>
           <h2>Formulare: bootstrap_form(++)</h2>
           <ul>
@@ -137,7 +153,7 @@
             <li>Standard Formbuilder etwas umständlicher</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Authentifizierung: Devise (+++)</h2>
           <ul>
@@ -146,7 +162,7 @@
             <li>alles was man braucht!</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Autorisierung: CanCan (++)</h2>
           <ul>
@@ -155,7 +171,7 @@
             <li>verlässt sich viel auf Konventionen, Autorisierung mit verschachtelten Resourcen etwas umständlich</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Routing (++)</h2>
           <ul>
@@ -163,7 +179,7 @@
             <li>bei dynamischen Segmenten muss Controlleraction und Routenname mit angegeben werden</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Sicherheit (-)</h2>
           <ul>
@@ -173,7 +189,7 @@
             <li>Rails Magic schafft Angriffsvektoren :(</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Zeitliches</h2>
           <table>
@@ -184,7 +200,7 @@
             <tr><td>Gesamt</td><td>69</td></tr>
           </table>
         </section>
-        
+
         <section>
           <h2>Burndown Chart</h2>
           <div id="burndown_chart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -195,8 +211,8 @@
       <script src="js/reveal.min.js"></script>
       <script src="js/jquery.min.js"></script>
       <script src="js/highcharts.js"></script>
-      
-      
+
+
 
       <script>
         // Full list of configuration options available here:
@@ -248,7 +264,7 @@
           // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
           ]
         });
-        
+
         $(function () {
     var chart;
     $(document).ready(function() {
@@ -312,7 +328,7 @@
                     threshold: null
                 }
             },
-    
+
             series: [{
                 type: 'area',
                 name: 'Stunden',
@@ -335,7 +351,7 @@
             }]
         });
     });
-    
+
 });
 
       </script>

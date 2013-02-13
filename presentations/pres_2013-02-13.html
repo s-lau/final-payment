@@ -252,7 +252,7 @@
           </table>
         </section>
 
-        <section>
+        <section id="burndown_slide">
           <h2>Burndown Chart</h2>
           <div id="burndown_chart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </section>
@@ -316,9 +316,8 @@
           ]
         });
 
-        $(function () {
     var chart;
-    $(document).ready(function() {
+    function draw_burndown() {
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'burndown_chart',
@@ -401,9 +400,12 @@
                 ]
             }]
         });
-    });
-
-});
+    }
+    Reveal.addEventListener( 'slidechanged', function( event ) {
+      if ($(event.currentSlide).attr('id') == 'burndown_slide') {
+        draw_burndown();
+      }
+  } );
 
       </script>
 

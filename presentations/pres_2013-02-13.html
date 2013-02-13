@@ -146,12 +146,12 @@
         </section>
 
         <section>
-          <h2>Formulare: bootstrap_form(++)</h2>
+          <h2>Formulare: bootstrap_form (++)</h2>
           <ul>
             <li>angepasster Formbuilder für Bootstrap</li>
             <li>lediglich Definition der Felder und Typen nötig</li>
             <li>automatisches Labelling und Fehlermarkierung</li>
-            <li>Standard Formbuilder etwas umständlicher</li>
+            <li class="fragment">Standard Formbuilder etwas umständlicher</li>
           </ul>
         </section>
 
@@ -160,7 +160,7 @@
           <ul>
             <li>komplett durch Devise realisiert</li>
             <li>wenig Änderungen nötig</li>
-            <li>alles was man braucht!</li>
+            <li class="fragment">alles was man braucht!</li>
           </ul>
         </section>
 
@@ -169,7 +169,7 @@
           <ul>
             <li>einfache DSL</li>
             <li>gute Integration in die Controller</li>
-            <li>verlässt sich viel auf Konventionen, Autorisierung mit verschachtelten Resourcen etwas umständlich</li>
+            <li class="fragment">verlässt sich viel auf Konventionen, Autorisierung mit verschachtelten Resourcen etwas umständlich</li>
           </ul>
         </section>
 
@@ -177,7 +177,7 @@
           <h2>Routing (++)</h2>
           <ul>
             <li>nur Restful-Resources benutzt</li>
-            <li>bei dynamischen Segmenten muss Controlleraction und Routenname mit angegeben werden</li>
+            <li class="fragment">bei dynamischen Segmenten muss Controlleraction und Routenname mit angegeben werden</li>
           </ul>
         </section>
 
@@ -185,9 +185,9 @@
           <h2>Sicherheit (-)</h2>
           <ul>
             <li>OOTB: SQL-injection, CRSF, Code-Injection, Mass-Assignment</li>
-            <li>Secure by default! :D</li>
-            <li>ABER gestern mal wieder: CVE-2013-0276 (5. dieses Jahr)</li>
-            <li>Rails Magic schafft Angriffsvektoren :(</li>
+            <li>Secure by default! <span  class="fragment smile">:D</span></li>
+            <li class="fragment"><strong>ABER</strong> gestern mal wieder: CVE-2013-0276 (5. dieses Jahr)</li>
+            <li class="fragment">Rails Magic schafft Angriffsvektoren <span class="fragment smile">:(</span></li>
           </ul>
         </section>
 
@@ -197,7 +197,7 @@
             <li>Key-Value Aufzählung</li>
             <li>Muss manuell gepflegt werden</li>
 	    <ul>
-	      <li>Aufwand zum sicherstellen dass die Anwendung übersetzt worden ist: <1h</li>
+	      <li>Aufwand zum sicherstellen dass die Anwendung übersetzt worden ist: &lt;1h</li>
 	    </ul>
           </ul>
         </section>
@@ -248,9 +248,9 @@
           <table>
             <tr><th>Kategorie</th><th>Zeit [h]</th></tr>
             <tr><td>Tickets</td><td>53,5</td></tr>
-            <tr><td>Sonstiges</td><td>15,5</td></tr>
-            <tr><td>davon Doku</td><td>16,5</td></tr>
-            <tr><td>Gesamt</td><td>69</td></tr>
+            <tr class="fragment"><td>Sonstiges</td><td>15,5</td></tr>
+            <tr class="fragment"><td>davon Doku</td><td>16,5</td></tr>
+            <tr class="fragment"><td>Gesamt</td><td>69</td></tr>
           </table>
         </section>
 
@@ -421,7 +421,13 @@
         draw_burndown();
       }
   } );
-
+  Reveal.addEventListener( 'fragmentshown', function( event ) {
+      // event.fragment = the fragment DOM element
+      var elem = $(event.fragment);
+      if (elem.hasClass('smile')) {
+        elem.addClass('smily');
+      }
+  } );
       </script>
 
   </body>

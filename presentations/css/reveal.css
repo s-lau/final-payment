@@ -189,6 +189,14 @@ body {
   font-style: italic;
 }
 
+.smily {
+  -webkit-transform: 1s rotate(90deg);
+  -moz-transform: 1s rotate(90deg);
+  -o-transform: 1s rotate(90deg);
+  -ms-transform: 1s rotate(90deg);
+  transform: 1s rotate(90deg);
+}
+
 /* Preserve aspect ratio and scale image so it's bound within the section */
 .reveal img,
 .reveal iframe {

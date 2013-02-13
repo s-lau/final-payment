@@ -207,7 +207,7 @@ body {
 }
 
 .reveal ol,
-.reveal ul {
+.reveal ul, .reveal table {
 	display: inline-block;
 
 	text-align: left;

@@ -54,7 +54,7 @@
             <li>Alle Requirements implementiert</li>
             <li>Code auf Github: <a href="http://tinyurl.com/finpay">http://tinyurl.com/finpay</a></li>
             <li>Requirements mit Feature Tests abgedeckt (ca. 80% CC)</li>
-            <li>Zeitaufwand (gesamt): ca. 100h</li>
+            <li>Zeitaufwand (gesamt): ca. 70h</li>
           </ul>
         </section>
 
@@ -127,7 +127,23 @@
               </ul>
             </ul>
         </section>
-        
+
+        <section>
+          <h2>Bootstrapping und Installation (+++)</h2>
+          <ul>
+            <li>Bootstrapping: binnen Sekunden</li>
+            <li>Installiert euch selbst eine Kopie der Software!</li>
+            <ol>
+              <li>Github Repository clonen</li>
+              <li><code>$&gt; bundle install</code></li>
+              <li><code>$&gt; rake db:setup</code></li>
+              <li><code>$&gt; rails server</code></li>
+              <li><a href="http://localhost:3000">localhost:3000</a></li>
+              <li>Mit <em>test1@example.com</em> und Passwort <em>123</em> einloggen</li>
+            </ol>
+          </ul>
+        </section>
+
         <section>
           <h2>Formulare: bootstrap_form(++)</h2>
           <ul>
@@ -137,7 +153,7 @@
             <li>Standard Formbuilder etwas umständlicher</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Authentifizierung: Devise (+++)</h2>
           <ul>
@@ -146,7 +162,7 @@
             <li>alles was man braucht!</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Autorisierung: CanCan (++)</h2>
           <ul>
@@ -155,7 +171,7 @@
             <li>verlässt sich viel auf Konventionen, Autorisierung mit verschachtelten Resourcen etwas umständlich</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Routing (++)</h2>
           <ul>
@@ -163,9 +179,9 @@
             <li>bei dynamischen Segmenten muss Controlleraction und Routenname mit angegeben werden</li>
           </ul>
         </section>
-        
+
         <section>
-          <h2>Sicherheit (--)</h2>
+          <h2>Sicherheit (-)</h2>
           <ul>
             <li>OOTB: SQL-injection, CRSF, Code-Injection, Mass-Assignment</li>
             <li>Secure by default! :D</li>
@@ -224,10 +240,30 @@
 	  </ul>
 	</section>
 
+
+        <section>
+          <h2>Zeitliches</h2>
+          <table>
+            <tr><th>Kategorie</th><th>Zeit [h]</th></tr>
+            <tr><td>Tickets</td><td>53,5</td></tr>
+            <tr><td>Sonstiges</td><td>15,5</td></tr>
+            <tr><td>davon Doku</td><td>16,5</td></tr>
+            <tr><td>Gesamt</td><td>69</td></tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>Burndown Chart</h2>
+          <div id="burndown_chart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+        </section>
       </div>
 
       <script src="lib/js/head.min.js"></script>
       <script src="js/reveal.min.js"></script>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/highcharts.js"></script>
+
+
 
       <script>
         // Full list of configuration options available here:
@@ -279,6 +315,95 @@
           // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
           ]
         });
+
+        $(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'burndown_chart',
+                zoomType: 'x',
+                spacingRight: 20
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: '(ohne "Sonstiges")'
+            },
+            xAxis: {
+                type: 'datetime',
+                maxZoom: 14 * 24 * 3600000, // fourteen days
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Restliche Stunden'
+                },
+                showFirstLabel: false,
+                min: 0
+            },
+            tooltip: {
+                shared: true
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, 'rgba(2,0,0,0)']
+                        ]
+                    },
+                    lineWidth: 1,
+                    marker: {
+                        enabled: false,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                radius: 5
+                            }
+                        }
+                    },
+                    shadow: false,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+
+            series: [{
+                type: 'area',
+                name: 'Stunden',
+                pointInterval: 24 * 3600 * 1000,
+                pointStart: Date.UTC(2013, 0, 01),
+                data: [
+                  53.5, 53.5, // 1-2
+                  53, 53, 53, 53, 53, 53, // 3-8
+                  46, 46, 46, 46, 46, 46, // 9-14
+                  42, // 15.1
+                  35, 35, 35, 35, 35, 35, // 16-21
+                  33, // 22.1
+                  25.5, 25.5, 25.5, // 23-25
+                  22.5, // 26.1
+                  15.5, 15.5, 15.5, 15.5, 15.5, 15.5, // 27.1-1.2
+                  10, 10, 10, 10, // 2-5
+                  3, 3, 3, 3, // 6-9
+                  0 // 10.2
+                ]
+            }]
+        });
+    });
+
+});
 
       </script>
 
